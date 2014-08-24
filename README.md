@@ -23,5 +23,11 @@ Beyond that the architecture will be fairly similar at a high level to Airtime:
 *	A media management part to deal with incoming media files
 *	A playout engine to manage the scheduling of the playout and the control of the liquidsoap daemon.
 
+There are things that is not going to do that Airtime does:
+
+*	Play in/Play out through hardware interfaces:  interfacing with hardware is very platform specific, the liquidsoap build may support alsa, jack or something else for a given platform but it is diificult to determine which interfaces may be available.  This isn't really needed for an internet radio station anyway.
+
+
+
 
 		
