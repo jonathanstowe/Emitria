@@ -28,6 +28,9 @@ There are things that is not going to do that Airtime does:
 *	Play in/Play out through hardware interfaces:  interfacing with hardware is very platform specific, the liquidsoap build may support alsa, jack or something else for a given platform but it is diificult to determine which interfaces may be available.  This isn't really needed for an internet radio station anyway.
 
 
+Why Emitria?
+
+Well to be honest I couldn't think of a non-stupid name.  So I asked on Facebook.  The lovely Aaron Udy, a DJ, electronic music producer and radio host suggested it :)
 
 
 		
