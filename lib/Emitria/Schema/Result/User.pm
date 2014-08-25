@@ -226,7 +226,11 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 UNIQUE CONSTRAINTS
+
+=head2 UNIQUE CONSTRAINTS
+
+=over 4
+
 
 =item C<user_login_idx>
 
@@ -239,6 +243,8 @@ __PACKAGE__->set_primary_key("id");
 =cut
 
 __PACKAGE__->add_unique_constraint("user_login_idx", ["login"]);
+
+=back
 
 =head2 RELATIONS
 

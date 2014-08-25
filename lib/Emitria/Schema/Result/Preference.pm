@@ -94,7 +94,11 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 UNIQUE CONSTRAINTS
+
+=head2 UNIQUE CONSTRAINTS
+
+=over 4
+
 
 =item C<pref_user_key_idx>
 
@@ -110,7 +114,12 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("pref_user_key_idx", ["user_id", "keystr"]);
 
-=head1 RELATIONS
+=back
+
+=head2 RELATIONS
+
+=over 4
+
 
 =item user_id
 

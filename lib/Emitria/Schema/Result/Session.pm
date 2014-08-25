@@ -94,7 +94,10 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("sessid");
 
-=head1 RELATIONS
+=head2 RELATIONS
+
+=over 4
+
 
 =item user_id
 

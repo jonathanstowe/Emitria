@@ -140,7 +140,10 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
+=head2 RELATIONS
+
+=over 4
+
 
 =item blockcontents
 

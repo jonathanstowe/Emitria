@@ -105,7 +105,11 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 UNIQUE CONSTRAINTS
+
+=head2 UNIQUE CONSTRAINTS
+
+=over 4
+
 
 =item C<music_dir_unique>
 
@@ -119,7 +123,12 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("music_dir_unique", ["directory"]);
 
-=head1 RELATIONS
+=back
+
+=head2 RELATIONS
+
+=over 4
+
 
 =item files
 

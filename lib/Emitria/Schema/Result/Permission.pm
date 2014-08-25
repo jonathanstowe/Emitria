@@ -103,7 +103,11 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("permid");
 
-=head1 UNIQUE CONSTRAINTS
+
+=head2 UNIQUE CONSTRAINTS
+
+=over 4
+
 
 =item C<perms_all_idx>
 
@@ -121,7 +125,12 @@ __PACKAGE__->set_primary_key("permid");
 
 __PACKAGE__->add_unique_constraint("perms_all_idx", ["user_id", "action", "obj"]);
 
-=head1 RELATIONS
+=back
+
+=head2 RELATIONS
+
+=over 4
+
 
 =item user
 
