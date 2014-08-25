@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Perm;
+package Emitria::Schema::Result::Permission;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Perm
+Emitria::Schema::Result::Permission
 
 =cut
 
@@ -28,11 +28,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<perms>
+=head1 TABLE: C<permission>
 
 =cut
 
-__PACKAGE__->table("perms");
+__PACKAGE__->table("permssion");
 
 =head1 ACCESSORS
 
@@ -41,7 +41,7 @@ __PACKAGE__->table("perms");
   data_type: 'integer'
   is_nullable: 0
 
-=head2 subj
+=head2 user_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -69,7 +69,7 @@ __PACKAGE__->table("perms");
 __PACKAGE__->add_columns(
   "permid",
   { data_type => "integer", is_nullable => 0 },
-  "subj",
+  "user_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
   "action",
   { data_type => "varchar", is_nullable => 1, size => 20 },
@@ -97,7 +97,7 @@ __PACKAGE__->set_primary_key("permid");
 
 =over 4
 
-=item * L</subj>
+=item * L</user>
 
 =item * L</action>
 
@@ -107,22 +107,22 @@ __PACKAGE__->set_primary_key("permid");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("perms_all_idx", ["subj", "action", "obj"]);
+__PACKAGE__->add_unique_constraint("perms_all_idx", ["user_id", "action", "obj"]);
 
 =head1 RELATIONS
 
-=head2 subj
+=head2 user
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "subj",
-  "Emitria::Schema::Result::Subj",
-  { id => "subj" },
+  "user",
+  "Emitria::Schema::Result::User",
+  { id => "user_id" },
   {
     is_deferrable => 0,
     join_type     => "LEFT",
@@ -135,4 +135,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

@@ -49,7 +49,7 @@ __PACKAGE__->table("show_hosts");
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 subjs_id
+=head2 user_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -67,7 +67,7 @@ __PACKAGE__->add_columns(
   },
   "show_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "subjs_id",
+  "user_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 
@@ -100,18 +100,18 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
-=head2 subj
+=head2 user
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "subj",
-  "Emitria::Schema::Result::Subj",
-  { id => "subjs_id" },
+  "user",
+  "Emitria::Schema::Result::User",
+  { id => "user_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 

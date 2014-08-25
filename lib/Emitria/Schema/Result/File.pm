@@ -349,7 +349,7 @@ __PACKAGE__->table("files");
   is_nullable: 1
   size: 512
 
-=head2 subject
+=head2 userect
 
   data_type: 'varchar'
   is_nullable: 1
@@ -566,7 +566,7 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 512 },
   "report_organization",
   { data_type => "varchar", is_nullable => 1, size => 512 },
-  "subject",
+  "userect",
   { data_type => "varchar", is_nullable => 1, size => 512 },
   "contributor",
   { data_type => "varchar", is_nullable => 1, size => 512 },
@@ -715,13 +715,13 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "editedby",
-  "Emitria::Schema::Result::Subj",
+  "Emitria::Schema::Result::User",
   { id => "editedby" },
   {
     is_deferrable => 0,
@@ -735,13 +735,13 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "owner",
-  "Emitria::Schema::Result::Subj",
+  "Emitria::Schema::Result::User",
   { id => "owner_id" },
   {
     is_deferrable => 0,

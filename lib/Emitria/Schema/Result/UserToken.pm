@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::SubjsToken;
+package Emitria::Schema::Result::UserToken;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::SubjsToken
+Emitria::Schema::Result::UserToken
 
 =cut
 
@@ -28,11 +28,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<subjs_token>
+=head1 TABLE: C<user_token>
 
 =cut
 
-__PACKAGE__->table("subjs_token");
+__PACKAGE__->table("user_token");
 
 =head1 ACCESSORS
 
@@ -41,7 +41,7 @@ __PACKAGE__->table("subjs_token");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'subjs_token_id_seq'
+  sequence: 'user_token_id_seq'
 
 =head2 user_id
 
@@ -74,7 +74,7 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "subjs_token_id_seq",
+    sequence          => "user_token_id_seq",
   },
   "user_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -100,7 +100,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<subjs_token_idx>
+=head2 C<user_token_idx>
 
 =over 4
 
@@ -110,7 +110,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("subjs_token_idx", ["token"]);
+__PACKAGE__->add_unique_constraint("user_token_idx", ["token"]);
 
 =head1 RELATIONS
 
@@ -118,13 +118,13 @@ __PACKAGE__->add_unique_constraint("subjs_token_idx", ["token"]);
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "user",
-  "Emitria::Schema::Result::Subj",
+  "Emitria::Schema::Result::User",
   { id => "user_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
@@ -133,4 +133,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

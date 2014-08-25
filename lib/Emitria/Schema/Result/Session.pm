@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Pref;
+package Emitria::Schema::Result::Session;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Pref
+Emitria::Schema::Result::Session
 
 =cut
 
@@ -28,98 +28,76 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<pref>
+=head1 TABLE: C<session>
 
 =cut
 
-__PACKAGE__->table("pref");
+__PACKAGE__->table("session");
 
 =head1 ACCESSORS
 
-=head2 id
+=head2 sessid
 
-  data_type: 'integer'
-  is_auto_increment: 1
+  data_type: 'char'
   is_nullable: 0
-  sequence: 'pref_id_seq'
+  size: 32
 
-=head2 subjid
+=head2 user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 keystr
+=head2 login
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 valstr
+=head2 ts
 
-  data_type: 'text'
+  data_type: 'timestamp'
   is_nullable: 1
 
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-    sequence          => "pref_id_seq",
-  },
-  "subjid",
+  "sessid",
+  { data_type => "char", is_nullable => 0, size => 32 },
+  "user_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "keystr",
+  "login",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "valstr",
-  { data_type => "text", is_nullable => 1 },
+  "ts",
+  { data_type => "timestamp", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
 
 =over 4
 
-=item * L</id>
+=item * L</sessid>
 
 =back
 
 =cut
 
-__PACKAGE__->set_primary_key("id");
-
-=head1 UNIQUE CONSTRAINTS
-
-=head2 C<pref_subj_key_idx>
-
-=over 4
-
-=item * L</subjid>
-
-=item * L</keystr>
-
-=back
-
-=cut
-
-__PACKAGE__->add_unique_constraint("pref_subj_key_idx", ["subjid", "keystr"]);
+__PACKAGE__->set_primary_key("sessid");
 
 =head1 RELATIONS
 
-=head2 subjid
+=head2 user_id
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "subjid",
-  "Emitria::Schema::Result::Subj",
-  { id => "subjid" },
+  "user_id",
+  "Emitria::Schema::Result::User",
+  { id => "user_id" },
   {
     is_deferrable => 0,
     join_type     => "LEFT",

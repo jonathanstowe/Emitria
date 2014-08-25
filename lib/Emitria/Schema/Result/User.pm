@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Subj;
+package Emitria::Schema::Result::User;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Subj
+Emitria::Schema::Result::User
 
 =cut
 
@@ -28,11 +28,11 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<subjs>
+=head1 TABLE: C<user>
 
 =cut
 
-__PACKAGE__->table("subjs");
+__PACKAGE__->table("user");
 
 =head1 ACCESSORS
 
@@ -41,7 +41,7 @@ __PACKAGE__->table("subjs");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'subjs_id_seq'
+  sequence: 'user_id_seq'
 
 =head2 login
 
@@ -126,7 +126,7 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "subjs_id_seq",
+    sequence          => "user_id_seq",
   },
   "login",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 255 },
@@ -168,7 +168,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<subjs_login_idx>
+=head2 C<user_login_idx>
 
 =over 4
 
@@ -178,7 +178,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("subjs_login_idx", ["login"]);
+__PACKAGE__->add_unique_constraint("user_login_idx", ["login"]);
 
 =head1 RELATIONS
 
@@ -231,14 +231,14 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Perm>
+Related object: L<Emitria::Schema::Result::Permission>
 
 =cut
 
 __PACKAGE__->has_many(
   "perms",
-  "Emitria::Schema::Result::Perm",
-  { "foreign.subj" => "self.id" },
+  "Emitria::Schema::Result::Permission",
+  { "foreign.user" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -261,14 +261,14 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Pref>
+Related object: L<Emitria::Schema::Result::Preference>
 
 =cut
 
 __PACKAGE__->has_many(
   "prefs",
-  "Emitria::Schema::Result::Pref",
-  { "foreign.subjid" => "self.id" },
+  "Emitria::Schema::Result::Preference",
+  { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -276,14 +276,14 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Sess>
+Related object: L<Emitria::Schema::Result::Session>
 
 =cut
 
 __PACKAGE__->has_many(
   "sesses",
-  "Emitria::Schema::Result::Sess",
-  { "foreign.userid" => "self.id" },
+  "Emitria::Schema::Result::Session",
+  { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
@@ -298,21 +298,21 @@ Related object: L<Emitria::Schema::Result::ShowHost>
 __PACKAGE__->has_many(
   "show_hosts",
   "Emitria::Schema::Result::ShowHost",
-  { "foreign.subjs_id" => "self.id" },
+  { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 subjs_tokens
+=head2 user_tokens
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::SubjsToken>
+Related object: L<Emitria::Schema::Result::UsersToken>
 
 =cut
 
 __PACKAGE__->has_many(
-  "subjs_tokens",
-  "Emitria::Schema::Result::SubjsToken",
+  "user_tokens",
+  "Emitria::Schema::Result::UserToken",
   { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

@@ -135,13 +135,13 @@ __PACKAGE__->has_many(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "creator",
-  "Emitria::Schema::Result::Subj",
+  "Emitria::Schema::Result::User",
   { id => "creator_id" },
   {
     is_deferrable => 0,

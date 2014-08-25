@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Sess;
+package Emitria::Schema::Result::Preference;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Sess
+Emitria::Schema::Result::Preference
 
 =cut
 
@@ -28,76 +28,98 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<sess>
+=head1 TABLE: C<preference>
 
 =cut
 
-__PACKAGE__->table("sess");
+__PACKAGE__->table("preference");
 
 =head1 ACCESSORS
 
-=head2 sessid
+=head2 id
 
-  data_type: 'char'
+  data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
-  size: 32
+  sequence: 'pref_id_seq'
 
-=head2 userid
+=head2 user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 login
+=head2 keystr
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 ts
+=head2 valstr
 
-  data_type: 'timestamp'
+  data_type: 'text'
   is_nullable: 1
 
 =cut
 
 __PACKAGE__->add_columns(
-  "sessid",
-  { data_type => "char", is_nullable => 0, size => 32 },
-  "userid",
+  "id",
+  {
+    data_type         => "integer",
+    is_auto_increment => 1,
+    is_nullable       => 0,
+    sequence          => "pref_id_seq",
+  },
+  "user_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "login",
+  "keystr",
   { data_type => "varchar", is_nullable => 1, size => 255 },
-  "ts",
-  { data_type => "timestamp", is_nullable => 1 },
+  "valstr",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
 
 =over 4
 
-=item * L</sessid>
+=item * L</id>
 
 =back
 
 =cut
 
-__PACKAGE__->set_primary_key("sessid");
+__PACKAGE__->set_primary_key("id");
+
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<pref_user_key_idx>
+
+=over 4
+
+=item * L</user_id>
+
+=item * L</keystr>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("pref_user_key_idx", ["user_id", "keystr"]);
 
 =head1 RELATIONS
 
-=head2 userid
+=head2 user_id
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Subj>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  "userid",
-  "Emitria::Schema::Result::Subj",
-  { id => "userid" },
+  "user_id",
+  "Emitria::Schema::Result::User",
+  { id => "user_id" },
   {
     is_deferrable => 0,
     join_type     => "LEFT",
