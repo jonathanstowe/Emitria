@@ -53,7 +53,7 @@ __PACKAGE__->table("music_dirs");
   is_nullable: 1
   size: 255
 
-=head2 exists
+=head2 dir_exists
 
   data_type: 'boolean'
   default_value: true
@@ -82,7 +82,7 @@ __PACKAGE__->add_columns(
       is_nullable => 1,
       size        => 255
    },
-   exists => {
+   dir_exists => {
       data_type     => "boolean",
       default_value => \"true",
       is_nullable   => 1
