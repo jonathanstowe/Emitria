@@ -16,17 +16,12 @@ use MooseX::NonMoose;
 use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
-=head1 COMPONENTS LOADED
-
-=over 4
-
-=item * L<DBIx::Class::InflateColumn::DateTime>
-
-=back
-
-=cut
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
+
+=head1 DESCRIPTION
+
+L<DBIx::Class::ResultSource>
 
 =head2 TABLE: C<listener_count>
 
