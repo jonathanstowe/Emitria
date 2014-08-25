@@ -78,6 +78,6 @@ __PACKAGE__->set_primary_key("ip");
 
 
 
-__PACKAGE__->meta->make_immutable;
+__PACKAGE__->meta()->make_immutable();
 
 1;
