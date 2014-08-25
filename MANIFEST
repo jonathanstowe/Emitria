@@ -1,3 +1,4 @@
+Build.PL
 lib/Emitria.pm
 lib/Emitria/Config.pm
 lib/Emitria/Schema.pm
@@ -12,7 +13,6 @@ lib/Emitria/Schema/Result/Locale.pm
 lib/Emitria/Schema/Result/LoginAttempt.pm
 lib/Emitria/Schema/Result/MountName.pm
 lib/Emitria/Schema/Result/MusicDir.pm
-lib/Emitria/Schema/Result/Perm.pm
 lib/Emitria/Schema/Result/Permission.pm
 lib/Emitria/Schema/Result/Playlist.pm
 lib/Emitria/Schema/Result/Playlistcontent.pm
@@ -20,11 +20,9 @@ lib/Emitria/Schema/Result/PlayoutHistory.pm
 lib/Emitria/Schema/Result/PlayoutHistoryMetadata.pm
 lib/Emitria/Schema/Result/PlayoutHistoryTemplate.pm
 lib/Emitria/Schema/Result/PlayoutHistoryTemplateField.pm
-lib/Emitria/Schema/Result/Pref.pm
 lib/Emitria/Schema/Result/Preference.pm
 lib/Emitria/Schema/Result/Schedule.pm
 lib/Emitria/Schema/Result/ServiceRegister.pm
-lib/Emitria/Schema/Result/Sess.pm
 lib/Emitria/Schema/Result/Session.pm
 lib/Emitria/Schema/Result/Show.pm
 lib/Emitria/Schema/Result/ShowDay.pm
@@ -34,16 +32,14 @@ lib/Emitria/Schema/Result/ShowRebroadcast.pm
 lib/Emitria/Schema/Result/Smemb.pm
 lib/Emitria/Schema/Result/Station.pm
 lib/Emitria/Schema/Result/StreamSetting.pm
-lib/Emitria/Schema/Result/Subj.pm
-lib/Emitria/Schema/Result/SubjsToken.pm
 lib/Emitria/Schema/Result/Timestamp.pm
 lib/Emitria/Schema/Result/User.pm
 lib/Emitria/Schema/Result/UserToken.pm
 lib/Emitria/Schema/Result/Webstream.pm
 lib/Emitria/Schema/Result/WebstreamMetadata.pm
 LICENSE
-Makefile.PL
 MANIFEST			This list of files
+MANIFEST.SKIP
 README.md
 t/00-Emetria_Config_load.t
 t/00-Emetria_Schema_load.t
@@ -54,3 +50,4 @@ t/etc/emitria.conf
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+share/etc/emitria.conf
