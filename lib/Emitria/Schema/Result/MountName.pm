@@ -51,14 +51,16 @@ __PACKAGE__->table("mount_name");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "mount_name",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   mount_name => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
+   },
 );
 
 =head1 PRIMARY KEY
@@ -84,7 +86,7 @@ Related object: L<Emitria::Schema::Result::ListenerCount>
 =cut
 
 __PACKAGE__->has_many(
-  "listener_counts",
+  listener_counts => 
   "Emitria::Schema::Result::ListenerCount",
   { "foreign.mount_name_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
@@ -94,4 +96,5 @@ __PACKAGE__->has_many(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

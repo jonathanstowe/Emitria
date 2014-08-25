@@ -51,10 +51,16 @@ __PACKAGE__->table("country");
 =cut
 
 __PACKAGE__->add_columns(
-  "isocode",
-  { data_type => "char", is_nullable => 0, size => 3 },
-  "name",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
+   isocode => {
+      data_type   => "char",
+      is_nullable => 0,
+      size        => 3
+   },
+   name => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
+   },
 );
 
 =head1 PRIMARY KEY
@@ -73,4 +79,5 @@ __PACKAGE__->set_primary_key("isocode");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

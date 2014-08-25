@@ -68,20 +68,30 @@ __PACKAGE__->table("music_dirs");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "directory",
-  { data_type => "text", is_nullable => 1 },
-  "type",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "exists",
-  { data_type => "boolean", default_value => \"true", is_nullable => 1 },
-  "watched",
-  { data_type => "boolean", default_value => \"true", is_nullable => 1 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   directory => {
+      data_type   => "text",
+      is_nullable => 1
+   },
+   type => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 255
+   },
+   exists => {
+      data_type     => "boolean",
+      default_value => \"true",
+      is_nullable   => 1
+   },
+   watched => {
+      data_type     => "boolean",
+      default_value => \"true",
+      is_nullable   => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -121,7 +131,7 @@ Related object: L<Emitria::Schema::Result::File>
 =cut
 
 __PACKAGE__->has_many(
-  "files",
+  files =>
   "Emitria::Schema::Result::File",
   { "foreign.directory" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
@@ -131,4 +141,5 @@ __PACKAGE__->has_many(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

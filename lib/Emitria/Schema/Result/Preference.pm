@@ -62,18 +62,25 @@ __PACKAGE__->table("preference");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "user_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "keystr",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "valstr",
-  { data_type => "text", is_nullable => 1 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   user_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   keystr => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 255
+   },
+   valstr => { 
+      data_type => "text", 
+      is_nullable => 1 
+   },
 );
 
 =head1 PRIMARY KEY
@@ -115,7 +122,7 @@ Related object: L<Emitria::Schema::Result::User>
 =cut
 
 __PACKAGE__->belongs_to(
-  "user_id",
+  user =>
   "Emitria::Schema::Result::User",
   { id => "user_id" },
   {
@@ -130,4 +137,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

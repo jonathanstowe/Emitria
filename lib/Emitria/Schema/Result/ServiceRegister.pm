@@ -51,10 +51,10 @@ __PACKAGE__->table("service_register");
 =cut
 
 __PACKAGE__->add_columns(
-  "name",
-  { data_type => "varchar", is_nullable => 0, size => 32 },
-  "ip",
-  { data_type => "varchar", is_nullable => 0, size => 18 },
+  name => { 
+      data_type => "varchar", is_nullable => 0, size => 32 },
+  ip => { 
+      data_type => "varchar", is_nullable => 0, size => 18 },
 );
 
 =head1 PRIMARY KEY
@@ -73,4 +73,5 @@ __PACKAGE__->set_primary_key("name");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

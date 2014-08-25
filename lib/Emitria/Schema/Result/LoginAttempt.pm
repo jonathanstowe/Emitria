@@ -51,10 +51,16 @@ __PACKAGE__->table("login_attempts");
 =cut
 
 __PACKAGE__->add_columns(
-  "ip",
-  { data_type => "varchar", is_nullable => 0, size => 32 },
-  "attempts",
-  { data_type => "integer", default_value => 0, is_nullable => 1 },
+   ip => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 32
+   },
+   attempts => {
+      data_type     => "integer",
+      default_value => 0,
+      is_nullable   => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -73,4 +79,5 @@ __PACKAGE__->set_primary_key("ip");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

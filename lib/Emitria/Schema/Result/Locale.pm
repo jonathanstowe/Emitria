@@ -57,16 +57,21 @@ __PACKAGE__->table("locale");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "locale_code",
-  { data_type => "varchar", is_nullable => 0, size => 16 },
-  "locale_lang",
-  { data_type => "varchar", is_nullable => 0, size => 128 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   locale_code => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 16
+   },
+   locale_lang => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 128
+   },
 );
 
 =head1 PRIMARY KEY
@@ -85,4 +90,5 @@ __PACKAGE__->set_primary_key("id");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

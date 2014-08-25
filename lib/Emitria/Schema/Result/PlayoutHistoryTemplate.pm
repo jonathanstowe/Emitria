@@ -57,16 +57,21 @@ __PACKAGE__->table("playout_history_template");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "name",
-  { data_type => "varchar", is_nullable => 0, size => 128 },
-  "type",
-  { data_type => "varchar", is_nullable => 0, size => 35 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   name => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 128
+   },
+   type => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 35
+   },
 );
 
 =head1 PRIMARY KEY
@@ -92,7 +97,7 @@ Related object: L<Emitria::Schema::Result::PlayoutHistoryTemplateField>
 =cut
 
 __PACKAGE__->has_many(
-  "playout_history_template_fields",
+  playout_history_template_fields =>
   "Emitria::Schema::Result::PlayoutHistoryTemplateField",
   { "foreign.template_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
@@ -102,4 +107,5 @@ __PACKAGE__->has_many(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

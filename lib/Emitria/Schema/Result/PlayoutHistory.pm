@@ -67,20 +67,29 @@ __PACKAGE__->table("playout_history");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "file_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "starts",
-  { data_type => "timestamp", is_nullable => 0 },
-  "ends",
-  { data_type => "timestamp", is_nullable => 1 },
-  "instance_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   file_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   starts => {
+      data_type   => "timestamp",
+      is_nullable => 0
+   },
+   ends => {
+      data_type   => "timestamp",
+      is_nullable => 1
+   },
+   instance_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -106,7 +115,7 @@ Related object: L<Emitria::Schema::Result::PlayoutHistoryMetadata>
 =cut
 
 __PACKAGE__->has_many(
-  "playout_history_metadatas",
+  playout_history_metadatas =>
   "Emitria::Schema::Result::PlayoutHistoryMetadata",
   { "foreign.history_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
@@ -121,7 +130,7 @@ Related object: L<Emitria::Schema::Result::File>
 =cut
 
 __PACKAGE__->belongs_to(
-  "file",
+  file =>
   "Emitria::Schema::Result::File",
   { id => "file_id" },
   {
@@ -141,7 +150,7 @@ Related object: L<Emitria::Schema::Result::ShowInstance>
 =cut
 
 __PACKAGE__->belongs_to(
-  "instance",
+  instance =>
   "Emitria::Schema::Result::ShowInstance",
   { id => "instance_id" },
   {
@@ -156,4 +165,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

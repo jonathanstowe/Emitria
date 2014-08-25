@@ -67,16 +67,29 @@ __PACKAGE__->table("permssion");
 =cut
 
 __PACKAGE__->add_columns(
-  "permid",
-  { data_type => "integer", is_nullable => 0 },
-  "user_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "action",
-  { data_type => "varchar", is_nullable => 1, size => 20 },
-  "obj",
-  { data_type => "integer", is_nullable => 1 },
-  "type",
-  { data_type => "char", is_nullable => 1, size => 1 },
+   permid => {
+      data_type   => "integer",
+      is_nullable => 0
+   },
+   user_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   action => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 20
+   },
+   obj => {
+      data_type   => "integer",
+      is_nullable => 1
+   },
+   type => {
+      data_type   => "char",
+      is_nullable => 1,
+      size        => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -120,7 +133,7 @@ Related object: L<Emitria::Schema::Result::User>
 =cut
 
 __PACKAGE__->belongs_to(
-  "user",
+  user =>
   "Emitria::Schema::Result::User",
   { id => "user_id" },
   {

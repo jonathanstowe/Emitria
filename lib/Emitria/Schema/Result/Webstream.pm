@@ -95,30 +95,52 @@ __PACKAGE__->table("webstream");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "name",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
-  "description",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
-  "url",
-  { data_type => "varchar", is_nullable => 0, size => 512 },
-  "length",
-  { data_type => "interval", default_value => "00:00:00", is_nullable => 0 },
-  "creator_id",
-  { data_type => "integer", is_nullable => 0 },
-  "mtime",
-  { data_type => "timestamp", is_nullable => 0 },
-  "utime",
-  { data_type => "timestamp", is_nullable => 0 },
-  "lptime",
-  { data_type => "timestamp", is_nullable => 1 },
-  "mime",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   name => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
+   },
+   description => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
+   },
+   url => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 512
+   },
+   length => {
+      data_type     => "interval",
+      default_value => "00:00:00",
+      is_nullable   => 0
+   },
+   creator_id => {
+      data_type   => "integer",
+      is_nullable => 0
+   },
+   mtime => {
+      data_type   => "timestamp",
+      is_nullable => 0
+   },
+   utime => {
+      data_type   => "timestamp",
+      is_nullable => 0
+   },
+   lptime => {
+      data_type   => "timestamp",
+      is_nullable => 1
+   },
+   mime => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 255
+   },
 );
 
 =head1 PRIMARY KEY
@@ -144,7 +166,7 @@ Related object: L<Emitria::Schema::Result::Schedule>
 =cut
 
 __PACKAGE__->has_many(
-  "schedules",
+  schedules =>
   "Emitria::Schema::Result::Schedule",
   { "foreign.stream_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
@@ -154,4 +176,5 @@ __PACKAGE__->has_many(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

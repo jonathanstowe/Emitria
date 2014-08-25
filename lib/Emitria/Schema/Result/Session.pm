@@ -62,14 +62,25 @@ __PACKAGE__->table("session");
 =cut
 
 __PACKAGE__->add_columns(
-  "sessid",
-  { data_type => "char", is_nullable => 0, size => 32 },
-  "user_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "login",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "ts",
-  { data_type => "timestamp", is_nullable => 1 },
+   sessid => {
+      data_type   => "char",
+      is_nullable => 0,
+      size        => 32
+   },
+   user_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   login => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 255
+   },
+   ts => {
+      data_type   => "timestamp",
+      is_nullable => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -95,7 +106,7 @@ Related object: L<Emitria::Schema::Result::User>
 =cut
 
 __PACKAGE__->belongs_to(
-  "user_id",
+  user =>
   "Emitria::Schema::Result::User",
   { id => "user_id" },
   {
@@ -110,4 +121,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

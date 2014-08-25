@@ -98,30 +98,55 @@ __PACKAGE__->table("blockcontents");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "block_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "file_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 1 },
-  "position",
-  { data_type => "integer", is_nullable => 1 },
-  "trackoffset",
-  { data_type => "double precision", default_value => 0, is_nullable => 0 },
-  "cliplength",
-  { data_type => "interval", default_value => "00:00:00", is_nullable => 1 },
-  "cuein",
-  { data_type => "interval", default_value => "00:00:00", is_nullable => 1 },
-  "cueout",
-  { data_type => "interval", default_value => "00:00:00", is_nullable => 1 },
-  "fadein",
-  { data_type => "time", default_value => "00:00:00", is_nullable => 1 },
-  "fadeout",
-  { data_type => "time", default_value => "00:00:00", is_nullable => 1 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   block_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   file_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 1
+   },
+   position => {
+      data_type   => "integer",
+      is_nullable => 1
+   },
+   trackoffset => {
+      data_type     => "double precision",
+      default_value => 0,
+      is_nullable   => 0
+   },
+   cliplength => {
+      data_type     => "interval",
+      default_value => "00:00:00",
+      is_nullable   => 1
+   },
+   cuein => {
+      data_type     => "interval",
+      default_value => "00:00:00",
+      is_nullable   => 1
+   },
+   cueout => {
+      data_type     => "interval",
+      default_value => "00:00:00",
+      is_nullable   => 1
+   },
+   fadein => {
+      data_type     => "time",
+      default_value => "00:00:00",
+      is_nullable   => 1
+   },
+   fadeout => {
+      data_type     => "time",
+      default_value => "00:00:00",
+      is_nullable   => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -147,7 +172,7 @@ Related object: L<Emitria::Schema::Result::Block>
 =cut
 
 __PACKAGE__->belongs_to(
-  "block",
+  block =>
   "Emitria::Schema::Result::Block",
   { id => "block_id" },
   {
@@ -167,7 +192,7 @@ Related object: L<Emitria::Schema::Result::File>
 =cut
 
 __PACKAGE__->belongs_to(
-  "file",
+  file =>
   "Emitria::Schema::Result::File",
   { id => "file_id" },
   {
@@ -182,4 +207,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

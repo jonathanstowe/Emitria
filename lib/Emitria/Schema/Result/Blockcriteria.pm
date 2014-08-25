@@ -75,22 +75,16 @@ __PACKAGE__->table("blockcriteria");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "criteria",
-  { data_type => "varchar", is_nullable => 0, size => 32 },
-  "modifier",
-  { data_type => "varchar", is_nullable => 0, size => 16 },
-  "value",
-  { data_type => "varchar", is_nullable => 0, size => 512 },
-  "extra",
-  { data_type => "varchar", is_nullable => 1, size => 512 },
-  "block_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   criteria => { data_type => "varchar", is_nullable => 0, size => 32 },
+   modifier => { data_type => "varchar", is_nullable => 0, size => 16 },
+   value    => { data_type => "varchar", is_nullable => 0, size => 512 },
+   extra    => { data_type => "varchar", is_nullable => 1, size => 512 },
+   block_id => { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 
 =head1 PRIMARY KEY
@@ -116,14 +110,14 @@ Related object: L<Emitria::Schema::Result::Block>
 =cut
 
 __PACKAGE__->belongs_to(
-  "block",
-  "Emitria::Schema::Result::Block",
-  { id => "block_id" },
-  { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
+   block => "Emitria::Schema::Result::Block",
+   { id            => "block_id" },
+   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
 
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

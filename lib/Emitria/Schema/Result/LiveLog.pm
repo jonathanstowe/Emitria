@@ -61,18 +61,14 @@ __PACKAGE__->table("live_log");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "state",
-  { data_type => "varchar", is_nullable => 0, size => 32 },
-  "start_time",
-  { data_type => "timestamp", is_nullable => 0 },
-  "end_time",
-  { data_type => "timestamp", is_nullable => 1 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   state      => { data_type => "varchar",   is_nullable => 0, size => 32 },
+   start_time => { data_type => "timestamp", is_nullable => 0 },
+   end_time   => { data_type => "timestamp", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -88,7 +84,6 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-
-
 __PACKAGE__->meta->make_immutable;
+
 1;

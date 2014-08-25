@@ -57,12 +57,21 @@ __PACKAGE__->table("stream_setting");
 =cut
 
 __PACKAGE__->add_columns(
-  "keyname",
-  { data_type => "varchar", is_nullable => 0, size => 64 },
-  "value",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
-  "type",
-  { data_type => "varchar", is_nullable => 0, size => 16 },
+   keyname => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 64
+   },
+   value => {
+      data_type   => "varchar",
+      is_nullable => 1,
+      size        => 255
+   },
+   type => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 16
+   },
 );
 
 =head1 PRIMARY KEY
@@ -81,4 +90,5 @@ __PACKAGE__->set_primary_key("keyname");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

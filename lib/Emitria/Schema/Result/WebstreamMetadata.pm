@@ -62,18 +62,25 @@ __PACKAGE__->table("webstream_metadata");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "instance_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
-  "start_time",
-  { data_type => "timestamp", is_nullable => 0 },
-  "liquidsoap_data",
-  { data_type => "varchar", is_nullable => 0, size => 1024 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   instance_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 0
+   },
+   start_time => {
+      data_type   => "timestamp",
+      is_nullable => 0
+   },
+   liquidsoap_data => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 1024
+   },
 );
 
 =head1 PRIMARY KEY
@@ -99,7 +106,7 @@ Related object: L<Emitria::Schema::Result::Schedule>
 =cut
 
 __PACKAGE__->belongs_to(
-  "instance",
+  instance =>
   "Emitria::Schema::Result::Schedule",
   { id => "instance_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },

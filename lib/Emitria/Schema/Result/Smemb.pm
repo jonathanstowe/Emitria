@@ -67,16 +67,29 @@ __PACKAGE__->table("smemb");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  { data_type => "integer", is_nullable => 0 },
-  "uid",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },
-  "gid",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },
-  "level",
-  { data_type => "integer", default_value => 0, is_nullable => 0 },
-  "mid",
-  { data_type => "integer", is_nullable => 1 },
+   id => {
+      data_type   => "integer",
+      is_nullable => 0
+   },
+   uid => {
+      data_type     => "integer",
+      default_value => 0,
+      is_nullable   => 0
+   },
+   gid => {
+      data_type     => "integer",
+      default_value => 0,
+      is_nullable   => 0
+   },
+   level => {
+      data_type     => "integer",
+      default_value => 0,
+      is_nullable   => 0
+   },
+   mid => {
+      data_type   => "integer",
+      is_nullable => 1
+   },
 );
 
 =head1 PRIMARY KEY
@@ -95,4 +108,5 @@ __PACKAGE__->set_primary_key("id");
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;

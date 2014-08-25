@@ -62,18 +62,25 @@ __PACKAGE__->table("show_rebroadcast");
 =cut
 
 __PACKAGE__->add_columns(
-  "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-  },
-  "day_offset",
-  { data_type => "varchar", is_nullable => 0, size => 255 },
-  "start_time",
-  { data_type => "time", is_nullable => 0 },
-  "show_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   day_offset => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
+   },
+   start_time => {
+      data_type   => "time",
+      is_nullable => 0
+   },
+   show_id => {
+      data_type      => "integer",
+      is_foreign_key => 1,
+      is_nullable    => 0
+   },
 );
 
 =head1 PRIMARY KEY
@@ -99,7 +106,7 @@ Related object: L<Emitria::Schema::Result::Show>
 =cut
 
 __PACKAGE__->belongs_to(
-  "show",
+  show =>
   "Emitria::Schema::Result::Show",
   { id => "show_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
@@ -109,4 +116,5 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta->make_immutable;
+
 1;
