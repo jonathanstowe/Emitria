@@ -17,11 +17,11 @@ use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
 
 =head1 DESCRIPTION
 
-L<DBIx::Class::ResultSource>
+A L<DBIx::Class::ResultSource> that describes a "user".
 
 =head2 TABLE: C<user>
 
@@ -37,6 +37,15 @@ __PACKAGE__->table("user");
 
   data_type: 'integer'
   is_auto_increment: 1
+  is_nullable: 0
+
+=item station_id
+
+This is the foreign key to the station this user belongs to. A user will
+always be created in the context of the station.  The user will only have
+access to the artifacts of that station.
+
+  data_type: "integer"
   is_nullable: 0
 
 =item login
@@ -122,6 +131,11 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
+   station_id => {
+      data_type   => "integer",
+      is_foreign_key => 1,
+      is_nullable => 0,
+   },
    login => {
       data_type     => "varchar",
       default_value => "",
@@ -185,6 +199,17 @@ __PACKAGE__->add_columns(
       default_value => 0,
       is_nullable   => 1
    },
+   date_created => {
+      data_type     => 'datetime',
+      set_on_create => 1,
+      is_nullable   => 0,
+   },
+   last_modified => {
+      data_type     => 'datetime',
+      set_on_update => 1,
+      set_on_create => 0,
+      is_nullable   => 1,
+   }
 );
 
 =back
@@ -215,7 +240,23 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->add_unique_constraint("user_login_idx", ["login"]);
 
-=head1 RELATIONS
+=head2 RELATIONS
+
+=over 4
+
+=item station
+
+This is the radio station that the user belongs to.  Any objects created by the
+user will be for this station.
+
+Type: belongs_to
+
+Related object: L<Emitria::Schema::Result::Station>
+
+=cut
+
+__PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
 
 =item blocks
 
@@ -352,6 +393,9 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=back
+
+=cut
 
 
 

@@ -16,16 +16,16 @@ WriteMakefile(
    BUILD_REQUIRES => {
       'Test::More' => 0,
       'Test::Exception' => 0,
+      'DBD::SQLite'  => 0,
    },
    PREREQ_PM => {
       'Moose'                 => 0,
       'DateTime'              => 0,
       'DBIx::Class'           => 0,
-      'DBD::Pg'               => 0,
+      'DBIx::Class::TimeStamp'   => '0.14',
       'Config::Tiny'          => 0,
       'MooseX::MarkAsMethods' => 0,
       'MooseX::NonMoose'      => 0,
-      'Net::Google::Calendar'   => 0,
    },
    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
    clean => { FILES    => 'Emetria-*' },

@@ -17,17 +17,18 @@ use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
 
 =head1 DESCRIPTION
 
-L<DBIx::Class::ResultSource>
+This L<DBIx::Class::ResultSource> describes a "file" that may either be uploaded to form
+part of a show or be a recording of a live show.
 
-=head2 TABLE: C<files>
+=head2 TABLE: C<file>
 
 =cut
 
-__PACKAGE__->table("files");
+__PACKAGE__->table("file");
 
 =head2 METHODS
 
@@ -37,6 +38,13 @@ __PACKAGE__->table("files");
 
   data_type: 'integer'
   is_auto_increment: 1
+  is_nullable: 0
+
+=item station_id
+
+A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
+
+  data_type: 'integer'
   is_nullable: 0
 
 =item name
@@ -451,6 +459,11 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
+   station_id => {
+      data_type   => "integer",
+      is_foreign_key => 1,
+      is_nullable => 0,
+   },
    name => {
       data_type     => "varchar",
       default_value => "",
@@ -786,6 +799,17 @@ __PACKAGE__->add_columns(
       default_value => \"false",
       is_nullable   => 1
    },
+   date_created => {
+      data_type     => 'datetime',
+      set_on_create => 1,
+      is_nullable   => 0,
+   },
+   last_modified => {
+      data_type     => 'datetime',
+      set_on_update => 1,
+      set_on_create => 0,
+      is_nullable   => 1,
+   }
 );
 
 =back
@@ -802,7 +826,23 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
+=head2 RELATIONS
+
+=over 4
+
+
+=item station
+
+This is the radio station that the file belongs to.  
+
+Type: belongs_to
+
+Related object: L<Emitria::Schema::Result::Station>
+
+=cut
+
+__PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
 
 =item blockcontents
 
