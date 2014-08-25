@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<blockcriteria>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("blockcriteria");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'blockcriteria_id_seq'
 
 =head2 criteria
 
@@ -81,7 +80,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "blockcriteria_id_seq",
   },
   "criteria",
   { data_type => "varchar", is_nullable => 0, size => 32 },

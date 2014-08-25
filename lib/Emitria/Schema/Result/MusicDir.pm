@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<music_dirs>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("music_dirs");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'music_dirs_id_seq'
 
 =head2 directory
 
@@ -74,7 +73,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "music_dirs_id_seq",
   },
   "directory",
   { data_type => "text", is_nullable => 1 },

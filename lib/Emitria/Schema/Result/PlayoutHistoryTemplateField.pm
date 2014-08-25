@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<playout_history_template_field>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("playout_history_template_field");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'playout_history_template_field_id_seq'
 
 =head2 template_id
 
@@ -86,7 +85,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "playout_history_template_field_id_seq",
   },
   "template_id",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },

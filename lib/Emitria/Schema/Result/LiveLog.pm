@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<live_log>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("live_log");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'live_log_id_seq'
 
 =head2 state
 
@@ -67,7 +66,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "live_log_id_seq",
   },
   "state",
   { data_type => "varchar", is_nullable => 0, size => 32 },

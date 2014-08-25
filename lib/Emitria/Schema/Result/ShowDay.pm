@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<show_days>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("show_days");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'show_days_id_seq'
 
 =head2 first_show
 
@@ -105,7 +104,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "show_days_id_seq",
   },
   "first_show",
   { data_type => "date", is_nullable => 0 },

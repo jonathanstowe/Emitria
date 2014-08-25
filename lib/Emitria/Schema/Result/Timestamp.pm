@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<timestamp>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("timestamp");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'timestamp_id_seq'
 
 =head2 timestamp
 
@@ -56,7 +55,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "timestamp_id_seq",
   },
   "timestamp",
   { data_type => "timestamp", is_nullable => 0 },

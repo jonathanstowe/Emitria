@@ -26,7 +26,7 @@ extends 'DBIx::Class::Core';
 
 =cut
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 =head1 TABLE: C<mount_name>
 
@@ -41,7 +41,6 @@ __PACKAGE__->table("mount_name");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'mount_name_id_seq'
 
 =head2 mount_name
 
@@ -57,7 +56,6 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "mount_name_id_seq",
   },
   "mount_name",
   { data_type => "varchar", is_nullable => 0, size => 255 },
