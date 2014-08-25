@@ -28,90 +28,92 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<show>
+=head2 TABLE: C<show>
 
 =cut
 
 __PACKAGE__->table("show");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 name
+=item name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 url
+=item url
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 1
   size: 255
 
-=head2 genre
+=item genre
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 1
   size: 255
 
-=head2 description
+=item description
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 color
+=item color
 
   data_type: 'varchar'
   is_nullable: 1
   size: 6
 
-=head2 background_color
+=item background_color
 
   data_type: 'varchar'
   is_nullable: 1
   size: 6
 
-=head2 live_stream_using_airtime_auth
+=item live_stream_using_airtime_auth
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 live_stream_using_custom_auth
+=item live_stream_using_custom_auth
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 live_stream_user
+=item live_stream_user
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 live_stream_pass
+=item live_stream_pass
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 linked
+=item linked
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 0
 
-=head2 is_linkable
+=item is_linkable
 
   data_type: 'boolean'
   default_value: true
@@ -187,7 +189,9 @@ __PACKAGE__->add_columns(
      { data_type => "boolean", default_value => \"true", is_nullable => 0 },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -201,7 +205,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 show_days
+=item show_days
 
 Type: has_many
 
@@ -216,7 +220,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_hosts
+=item show_hosts
 
 Type: has_many
 
@@ -231,7 +235,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_instances
+=item show_instances
 
 Type: has_many
 
@@ -246,7 +250,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_rebroadcasts
+=item show_rebroadcasts
 
 Type: has_many
 

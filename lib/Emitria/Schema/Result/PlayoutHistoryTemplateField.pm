@@ -28,51 +28,53 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<playout_history_template_field>
+=head2 TABLE: C<playout_history_template_field>
 
 =cut
 
 __PACKAGE__->table("playout_history_template_field");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 template_id
+=item template_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 name
+=item name
 
   data_type: 'varchar'
   is_nullable: 0
   size: 128
 
-=head2 label
+=item label
 
   data_type: 'varchar'
   is_nullable: 0
   size: 128
 
-=head2 type
+=item type
 
   data_type: 'varchar'
   is_nullable: 0
   size: 128
 
-=head2 is_file_md
+=item is_file_md
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 0
 
-=head2 position
+=item position
 
   data_type: 'integer'
   is_nullable: 0
@@ -116,7 +118,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -130,7 +134,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 template
+=item template
 
 Type: belongs_to
 

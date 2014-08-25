@@ -28,95 +28,97 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<schedule>
+=head2 TABLE: C<schedule>
 
 =cut
 
 __PACKAGE__->table("schedule");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 starts
+=item starts
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 ends
+=item ends
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 file_id
+=item file_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 stream_id
+=item stream_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 clip_length
+=item clip_length
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 fade_in
+=item fade_in
 
   data_type: 'time'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 fade_out
+=item fade_out
 
   data_type: 'time'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 cue_in
+=item cue_in
 
   data_type: 'interval'
   is_nullable: 0
 
-=head2 cue_out
+=item cue_out
 
   data_type: 'interval'
   is_nullable: 0
 
-=head2 media_item_played
+=item media_item_played
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 instance_id
+=item instance_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 playout_status
+=item playout_status
 
   data_type: 'smallint'
   default_value: 1
   is_nullable: 0
 
-=head2 broadcasted
+=item broadcasted
 
   data_type: 'smallint'
   default_value: 0
   is_nullable: 0
 
-=head2 position
+=item position
 
   data_type: 'integer'
   default_value: 0
@@ -198,7 +200,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -212,7 +216,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 webstream_metadatas
+=item webstream_metadatas
 
 Type: has_many
 
@@ -227,7 +231,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 file
+=item file
 
 Type: belongs_to
 
@@ -247,7 +251,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 instance
+=item instance
 
 Type: belongs_to
 
@@ -262,7 +266,7 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
-=head2 stream
+=item stream
 
 Type: belongs_to
 

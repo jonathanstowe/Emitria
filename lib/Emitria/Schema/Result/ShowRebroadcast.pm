@@ -28,32 +28,34 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<show_rebroadcast>
+=head2 TABLE: C<show_rebroadcast>
 
 =cut
 
 __PACKAGE__->table("show_rebroadcast");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 day_offset
+=item day_offset
 
   data_type: 'varchar'
   is_nullable: 0
   size: 255
 
-=head2 start_time
+=item start_time
 
   data_type: 'time'
   is_nullable: 0
 
-=head2 show_id
+=item show_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -83,7 +85,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -97,7 +101,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 show
+=item show
 
 Type: belongs_to
 

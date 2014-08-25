@@ -28,37 +28,39 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<permission>
+=head2 TABLE: C<permission>
 
 =cut
 
 __PACKAGE__->table("permssion");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 permid
+=over 4
+
+=item permid
 
   data_type: 'integer'
   is_nullable: 0
 
-=head2 user_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 action
+=item action
 
   data_type: 'varchar'
   is_nullable: 1
   size: 20
 
-=head2 obj
+=item obj
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 type
+=item type
 
   data_type: 'char'
   is_nullable: 1
@@ -92,7 +94,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -106,7 +110,7 @@ __PACKAGE__->set_primary_key("permid");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<perms_all_idx>
+=item C<perms_all_idx>
 
 =over 4
 
@@ -124,7 +128,7 @@ __PACKAGE__->add_unique_constraint("perms_all_idx", ["user_id", "action", "obj"]
 
 =head1 RELATIONS
 
-=head2 user
+=item user
 
 Type: belongs_to
 

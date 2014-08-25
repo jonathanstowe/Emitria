@@ -28,50 +28,52 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<playlist>
+=head2 TABLE: C<playlist>
 
 =cut
 
 __PACKAGE__->table("playlist");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 name
+=item name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 mtime
+=item mtime
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 utime
+=item utime
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 creator_id
+=item creator_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 description
+=item description
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 length
+=item length
 
   data_type: 'interval'
   default_value: '00:00:00'
@@ -116,7 +118,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -130,7 +134,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 playlistcontents
+=item playlistcontents
 
 Type: has_many
 
@@ -145,7 +149,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 creator
+=item creator
 
 Type: belongs_to
 

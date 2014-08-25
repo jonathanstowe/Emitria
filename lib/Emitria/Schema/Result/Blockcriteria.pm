@@ -28,45 +28,47 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<blockcriteria>
+=head2 TABLE: C<blockcriteria>
 
 =cut
 
 __PACKAGE__->table("blockcriteria");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 criteria
+=item criteria
 
   data_type: 'varchar'
   is_nullable: 0
   size: 32
 
-=head2 modifier
+=item modifier
 
   data_type: 'varchar'
   is_nullable: 0
   size: 16
 
-=head2 value
+=item value
 
   data_type: 'varchar'
   is_nullable: 0
   size: 512
 
-=head2 extra
+=item extra
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 block_id
+=item block_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -87,7 +89,9 @@ __PACKAGE__->add_columns(
    block_id => { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -101,7 +105,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 block
+=item block
 
 Type: belongs_to
 

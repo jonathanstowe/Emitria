@@ -28,38 +28,40 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<music_dirs>
+=head2 TABLE: C<music_dirs>
 
 =cut
 
 __PACKAGE__->table("music_dirs");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 directory
+=item directory
 
   data_type: 'text'
   is_nullable: 1
 
-=head2 type
+=item type
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 dir_exists
+=item dir_exists
 
   data_type: 'boolean'
   default_value: true
   is_nullable: 1
 
-=head2 watched
+=item watched
 
   data_type: 'boolean'
   default_value: true
@@ -94,7 +96,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -108,7 +112,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<music_dir_unique>
+=item C<music_dir_unique>
 
 =over 4
 
@@ -122,7 +126,7 @@ __PACKAGE__->add_unique_constraint("music_dir_unique", ["directory"]);
 
 =head1 RELATIONS
 
-=head2 files
+=item files
 
 Type: has_many
 

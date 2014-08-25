@@ -28,33 +28,35 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<playout_history_metadata>
+=head2 TABLE: C<playout_history_metadata>
 
 =cut
 
 __PACKAGE__->table("playout_history_metadata");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 history_id
+=item history_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 key
+=item key
 
   data_type: 'varchar'
   is_nullable: 0
   size: 128
 
-=head2 value
+=item value
 
   data_type: 'varchar'
   is_nullable: 0
@@ -85,7 +87,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -99,7 +103,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 history
+=item history
 
 Type: belongs_to
 

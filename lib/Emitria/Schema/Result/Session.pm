@@ -28,33 +28,35 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<session>
+=head2 TABLE: C<session>
 
 =cut
 
 __PACKAGE__->table("session");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 sessid
+=over 4
+
+=item sessid
 
   data_type: 'char'
   is_nullable: 0
   size: 32
 
-=head2 user_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 login
+=item login
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 ts
+=item ts
 
   data_type: 'timestamp'
   is_nullable: 1
@@ -83,7 +85,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -97,7 +101,7 @@ __PACKAGE__->set_primary_key("sessid");
 
 =head1 RELATIONS
 
-=head2 user_id
+=item user_id
 
 Type: belongs_to
 

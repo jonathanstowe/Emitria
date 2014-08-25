@@ -28,21 +28,23 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<service_register>
+=head2 TABLE: C<service_register>
 
 =cut
 
 __PACKAGE__->table("service_register");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 name
+=over 4
+
+=item name
 
   data_type: 'varchar'
   is_nullable: 0
   size: 32
 
-=head2 ip
+=item ip
 
   data_type: 'varchar'
   is_nullable: 0
@@ -57,7 +59,9 @@ __PACKAGE__->add_columns(
       data_type => "varchar", is_nullable => 0, size => 18 },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 

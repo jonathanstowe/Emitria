@@ -28,27 +28,29 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<show_hosts>
+=head2 TABLE: C<show_hosts>
 
 =cut
 
 __PACKAGE__->table("show_hosts");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 show_id
+=item show_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 user_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -74,7 +76,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -88,7 +92,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 show
+=item show
 
 Type: belongs_to
 
@@ -103,7 +107,7 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
-=head2 user
+=item user
 
 Type: belongs_to
 

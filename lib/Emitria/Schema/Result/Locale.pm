@@ -28,27 +28,29 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<locale>
+=head2 TABLE: C<locale>
 
 =cut
 
 __PACKAGE__->table("locale");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 locale_code
+=item locale_code
 
   data_type: 'varchar'
   is_nullable: 0
   size: 16
 
-=head2 locale_lang
+=item locale_lang
 
   data_type: 'varchar'
   is_nullable: 0
@@ -74,7 +76,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 

@@ -28,77 +28,79 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<show_instances>
+=head2 TABLE: C<show_instances>
 
 =cut
 
 __PACKAGE__->table("show_instances");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 starts
+=item starts
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 ends
+=item ends
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 show_id
+=item show_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 record
+=item record
 
   data_type: 'smallint'
   default_value: 0
   is_nullable: 1
 
-=head2 rebroadcast
+=item rebroadcast
 
   data_type: 'smallint'
   default_value: 0
   is_nullable: 1
 
-=head2 instance_id
+=item instance_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 file_id
+=item file_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 time_filled
+=item time_filled
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 created
+=item created
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 last_scheduled
+=item last_scheduled
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 modified_instance
+=item modified_instance
 
   data_type: 'boolean'
   default_value: false
@@ -165,7 +167,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -179,7 +183,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 playout_histories
+=item playout_histories
 
 Type: has_many
 
@@ -194,7 +198,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 schedules
+=item schedules
 
 Type: has_many
 
@@ -209,7 +213,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_instances
+=item show_instances
 
 Type: has_many
 
@@ -224,7 +228,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 file
+=item file
 
 Type: belongs_to
 
@@ -244,7 +248,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 instance
+=item instance
 
 Type: belongs_to
 
@@ -264,7 +268,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 show
+=item show
 
 Type: belongs_to
 

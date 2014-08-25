@@ -28,27 +28,29 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<stream_setting>
+=head2 TABLE: C<stream_setting>
 
 =cut
 
 __PACKAGE__->table("stream_setting");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 keyname
+=over 4
+
+=item keyname
 
   data_type: 'varchar'
   is_nullable: 0
   size: 64
 
-=head2 value
+=item value
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 type
+=item type
 
   data_type: 'varchar'
   is_nullable: 0
@@ -74,7 +76,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 

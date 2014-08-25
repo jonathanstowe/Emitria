@@ -28,32 +28,34 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<live_log>
+=head2 TABLE: C<live_log>
 
 =cut
 
 __PACKAGE__->table("live_log");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 state
+=item state
 
   data_type: 'varchar'
   is_nullable: 0
   size: 32
 
-=head2 start_time
+=item start_time
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 end_time
+=item end_time
 
   data_type: 'timestamp'
   is_nullable: 1
@@ -71,7 +73,9 @@ __PACKAGE__->add_columns(
    end_time   => { data_type => "timestamp", is_nullable => 1 },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 

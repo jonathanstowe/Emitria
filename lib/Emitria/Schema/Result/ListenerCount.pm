@@ -28,33 +28,35 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<listener_count>
+=head2 TABLE: C<listener_count>
 
 =cut
 
 __PACKAGE__->table("listener_count");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 timestamp_id
+=item timestamp_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 mount_name_id
+=item mount_name_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 listener_count
+=item listener_count
 
   data_type: 'integer'
   is_nullable: 0
@@ -83,7 +85,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -97,7 +101,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 mount_name
+=item mount_name
 
 Type: belongs_to
 
@@ -112,7 +116,7 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
-=head2 timestamp
+=item timestamp
 
 Type: belongs_to
 

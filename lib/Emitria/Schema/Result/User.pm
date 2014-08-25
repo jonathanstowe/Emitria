@@ -28,90 +28,92 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<user>
+=head2 TABLE: C<user>
 
 =cut
 
 __PACKAGE__->table("user");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 login
+=item login
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 pass
+=item pass
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 type
+=item type
 
   data_type: 'char'
   default_value: 'U'
   is_nullable: 0
   size: 1
 
-=head2 first_name
+=item first_name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 last_name
+=item last_name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 lastlogin
+=item lastlogin
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 lastfail
+=item lastfail
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 skype_contact
+=item skype_contact
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 jabber_contact
+=item jabber_contact
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 email
+=item email
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 cell_phone
+=item cell_phone
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 login_attempts
+=item login_attempts
 
   data_type: 'integer'
   default_value: 0
@@ -190,7 +192,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -204,7 +208,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<user_login_idx>
+=item C<user_login_idx>
 
 =over 4
 
@@ -218,7 +222,7 @@ __PACKAGE__->add_unique_constraint("user_login_idx", ["login"]);
 
 =head1 RELATIONS
 
-=head2 blocks
+=item blocks
 
 Type: has_many
 
@@ -233,7 +237,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 files_editedbies
+=item files_editedbies
 
 Type: has_many
 
@@ -248,7 +252,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 files_owners
+=item files_owners
 
 Type: has_many
 
@@ -263,7 +267,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 permissions
+=item permissions
 
 Type: has_many
 
@@ -278,7 +282,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 playlists
+=item playlists
 
 Type: has_many
 
@@ -293,7 +297,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 prefs
+=item prefs
 
 Type: has_many
 
@@ -308,7 +312,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 sessions
+=item sessions
 
 Type: has_many
 
@@ -323,7 +327,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_hosts
+=item show_hosts
 
 Type: has_many
 
@@ -338,7 +342,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 user_tokens
+=item user_tokens
 
 Type: has_many
 

@@ -28,39 +28,41 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<user_token>
+=head2 TABLE: C<user_token>
 
 =cut
 
 __PACKAGE__->table("user_token");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 user_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 action
+=item action
 
   data_type: 'varchar'
   is_nullable: 0
   size: 255
 
-=head2 token
+=item token
 
   data_type: 'varchar'
   is_nullable: 0
   size: 40
 
-=head2 created
+=item created
 
   data_type: 'timestamp'
   is_nullable: 0
@@ -94,7 +96,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -108,7 +112,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<user_token_idx>
+=item C<user_token_idx>
 
 =over 4
 
@@ -122,7 +126,7 @@ __PACKAGE__->add_unique_constraint("user_token_idx", ["token"]);
 
 =head1 RELATIONS
 
-=head2 user
+=item user
 
 Type: belongs_to
 

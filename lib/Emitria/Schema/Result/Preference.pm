@@ -28,33 +28,35 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<preference>
+=head2 TABLE: C<preference>
 
 =cut
 
 __PACKAGE__->table("preference");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 user_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 keystr
+=item keystr
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 valstr
+=item valstr
 
   data_type: 'text'
   is_nullable: 1
@@ -83,7 +85,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -97,7 +101,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<pref_user_key_idx>
+=item C<pref_user_key_idx>
 
 =over 4
 
@@ -113,7 +117,7 @@ __PACKAGE__->add_unique_constraint("pref_user_key_idx", ["user_id", "keystr"]);
 
 =head1 RELATIONS
 
-=head2 user_id
+=item user_id
 
 Type: belongs_to
 

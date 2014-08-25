@@ -28,32 +28,34 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<webstream_metadata>
+=head2 TABLE: C<webstream_metadata>
 
 =cut
 
 __PACKAGE__->table("webstream_metadata");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 instance_id
+=item instance_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=head2 start_time
+=item start_time
 
   data_type: 'timestamp'
   is_nullable: 0
 
-=head2 liquidsoap_data
+=item liquidsoap_data
 
   data_type: 'varchar'
   is_nullable: 0
@@ -83,7 +85,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -97,7 +101,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 instance
+=item instance
 
 Type: belongs_to
 

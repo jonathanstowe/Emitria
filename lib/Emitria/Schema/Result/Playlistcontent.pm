@@ -28,85 +28,87 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<playlistcontents>
+=head2 TABLE: C<playlistcontents>
 
 =cut
 
 __PACKAGE__->table("playlistcontents");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 playlist_id
+=item playlist_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 file_id
+=item file_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 block_id
+=item block_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 stream_id
+=item stream_id
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 type
+=item type
 
   data_type: 'smallint'
   default_value: 0
   is_nullable: 0
 
-=head2 position
+=item position
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 trackoffset
+=item trackoffset
 
   data_type: 'double precision'
   default_value: 0
   is_nullable: 0
 
-=head2 cliplength
+=item cliplength
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 cuein
+=item cuein
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 cueout
+=item cueout
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 fadein
+=item fadein
 
   data_type: 'time'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 fadeout
+=item fadeout
 
   data_type: 'time'
   default_value: '00:00:00'
@@ -180,7 +182,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -194,7 +198,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 block
+=item block
 
 Type: belongs_to
 
@@ -214,7 +218,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 file
+=item file
 
 Type: belongs_to
 
@@ -234,7 +238,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 playlist
+=item playlist
 
 Type: belongs_to
 

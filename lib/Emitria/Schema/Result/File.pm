@@ -28,419 +28,421 @@ extends 'DBIx::Class::Core';
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
-=head1 TABLE: C<files>
+=head2 TABLE: C<files>
 
 =cut
 
 __PACKAGE__->table("files");
 
-=head1 ACCESSORS
+=head2 METHODS
 
-=head2 id
+=over 4
+
+=item id
 
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 name
+=item name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 mime
+=item mime
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=head2 ftype
+=item ftype
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 128
 
-=head2 directory
+=item directory
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 filepath
+=item filepath
 
   data_type: 'text'
   default_value: (empty string)
   is_nullable: 1
 
-=head2 state
+=item state
 
   data_type: 'varchar'
   default_value: 'empty'
   is_nullable: 0
   size: 128
 
-=head2 currentlyaccessing
+=item currentlyaccessing
 
   data_type: 'integer'
   default_value: 0
   is_nullable: 0
 
-=head2 editedby
+=item editedby
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 mtime
+=item mtime
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 utime
+=item utime
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 lptime
+=item lptime
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 md5
+=item md5
 
   data_type: 'char'
   is_nullable: 1
   size: 32
 
-=head2 track_title
+=item track_title
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 artist_name
+=item artist_name
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 bit_rate
+=item bit_rate
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 sample_rate
+=item sample_rate
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 format
+=item format
 
   data_type: 'varchar'
   is_nullable: 1
   size: 128
 
-=head2 length
+=item length
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 album_title
+=item album_title
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 genre
+=item genre
 
   data_type: 'varchar'
   is_nullable: 1
   size: 64
 
-=head2 comments
+=item comments
 
   data_type: 'text'
   is_nullable: 1
 
-=head2 year
+=item year
 
   data_type: 'varchar'
   is_nullable: 1
   size: 16
 
-=head2 track_number
+=item track_number
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 channels
+=item channels
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 url
+=item url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 1024
 
-=head2 bpm
+=item bpm
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 rating
+=item rating
 
   data_type: 'varchar'
   is_nullable: 1
   size: 8
 
-=head2 encoded_by
+=item encoded_by
 
   data_type: 'varchar'
   is_nullable: 1
   size: 255
 
-=head2 disc_number
+=item disc_number
 
   data_type: 'varchar'
   is_nullable: 1
   size: 8
 
-=head2 mood
+=item mood
 
   data_type: 'varchar'
   is_nullable: 1
   size: 64
 
-=head2 label
+=item label
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 composer
+=item composer
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 encoder
+=item encoder
 
   data_type: 'varchar'
   is_nullable: 1
   size: 64
 
-=head2 checksum
+=item checksum
 
   data_type: 'varchar'
   is_nullable: 1
   size: 256
 
-=head2 lyrics
+=item lyrics
 
   data_type: 'text'
   is_nullable: 1
 
-=head2 orchestra
+=item orchestra
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 conductor
+=item conductor
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 lyricist
+=item lyricist
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 original_lyricist
+=item original_lyricist
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 radio_station_name
+=item radio_station_name
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 info_url
+=item info_url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 artist_url
+=item artist_url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 audio_source_url
+=item audio_source_url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 radio_station_url
+=item radio_station_url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 buy_this_url
+=item buy_this_url
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 isrc_number
+=item isrc_number
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 catalog_number
+=item catalog_number
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 original_artist
+=item original_artist
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 copyright
+=item copyright
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 report_datetime
+=item report_datetime
 
   data_type: 'varchar'
   is_nullable: 1
   size: 32
 
-=head2 report_location
+=item report_location
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 report_organization
+=item report_organization
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 userect
+=item userect
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 contributor
+=item contributor
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 language
+=item language
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 file_exists
+=item file_exists
 
   data_type: 'boolean'
   default_value: true
   is_nullable: 1
 
-=head2 soundcloud_id
+=item soundcloud_id
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 soundcloud_error_code
+=item soundcloud_error_code
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 soundcloud_error_msg
+=item soundcloud_error_msg
 
   data_type: 'varchar'
   is_nullable: 1
   size: 512
 
-=head2 soundcloud_link_to_file
+=item soundcloud_link_to_file
 
   data_type: 'varchar'
   is_nullable: 1
   size: 4096
 
-=head2 soundcloud_upload_time
+=item soundcloud_upload_time
 
   data_type: 'timestamp'
   is_nullable: 1
 
-=head2 replay_gain
+=item replay_gain
 
   data_type: 'numeric'
   is_nullable: 1
 
-=head2 owner_id
+=item owner_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 1
 
-=head2 cuein
+=item cuein
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 cueout
+=item cueout
 
   data_type: 'interval'
   default_value: '00:00:00'
   is_nullable: 1
 
-=head2 silan_check
+=item silan_check
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 hidden
+=item hidden
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 is_scheduled
+=item is_scheduled
 
   data_type: 'boolean'
   default_value: false
   is_nullable: 1
 
-=head2 is_playlist
+=item is_playlist
 
   data_type: 'boolean'
   default_value: false
@@ -791,7 +793,9 @@ __PACKAGE__->add_columns(
    },
 );
 
-=head1 PRIMARY KEY
+=back
+
+=head2 PRIMARY KEY
 
 =over 4
 
@@ -805,7 +809,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 blockcontents
+=item blockcontents
 
 Type: has_many
 
@@ -820,7 +824,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 playlistcontents
+=item playlistcontents
 
 Type: has_many
 
@@ -835,7 +839,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 playout_histories
+=item playout_histories
 
 Type: has_many
 
@@ -850,7 +854,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 schedules
+=item schedules
 
 Type: has_many
 
@@ -865,7 +869,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 show_instances
+=item show_instances
 
 Type: has_many
 
@@ -880,7 +884,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 directory
+=item directory
 
 Type: belongs_to
 
@@ -900,7 +904,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 editedby
+=item editedby
 
 Type: belongs_to
 
@@ -920,7 +924,7 @@ __PACKAGE__->belongs_to(
   },
 );
 
-=head2 owner
+=item owner
 
 Type: belongs_to
 
