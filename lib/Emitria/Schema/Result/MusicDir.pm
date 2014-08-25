@@ -39,6 +39,11 @@ __PACKAGE__->table("music_dirs");
   is_auto_increment: 1
   is_nullable: 0
 
+=item station_id
+
+  data_type: 'integer'
+  is_nullable: 0
+
 =item directory
 
   data_type: 'text'
@@ -68,6 +73,11 @@ __PACKAGE__->add_columns(
    id => {
       data_type         => "integer",
       is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   station_id => {
+      data_type         => "integer",
+      is_foreign_key     => 1,
       is_nullable       => 0,
    },
    directory => {
@@ -128,6 +138,18 @@ __PACKAGE__->add_unique_constraint("music_dir_unique", ["directory"]);
 =head2 RELATIONS
 
 =over 4
+
+=item station
+
+This is the radio station that the directory belongs to. 
+
+Type: belongs_to
+
+Related object: L<Emitria::Schema::Result::Station>
+
+=cut
+
+__PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 
 =item files

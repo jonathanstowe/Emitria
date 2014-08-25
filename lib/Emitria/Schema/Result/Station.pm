@@ -92,6 +92,13 @@ A relation to the L<Emitria::Schema::Result::File>s for this station
 
 __PACKAGE__->has_many( shows => "Emitria::Schema::Result::Show",'station_id', { cascade_copy => 0, cascade_delete => 0 });
 
+=item music_dirs
+
+A relation to the L<Emitria::Schema::Result::MusicDir>s for this station
+
+=cut
+
+__PACKAGE__->has_many( music_dirs => "Emitria::Schema::Result::MusicDir",'station_id', { cascade_copy => 0, cascade_delete => 0 });
 
 
 __PACKAGE__->meta()->make_immutable();
