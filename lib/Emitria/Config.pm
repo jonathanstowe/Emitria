@@ -6,6 +6,13 @@ use warnings;
 use Moose;
 
 use Config::Tiny;
+use File::Spec::Functions qw(catfile catdir rel2abs curdir);
+use File::ShareDir qw(dist_dir);
+use File::HomeDir;
+use File::Basename qw(dirname);
+use Path::Class;
+use Carp qw(croak);
+
 
 =head1 NAME
 
@@ -21,9 +28,9 @@ This provides methods for obtaining the Emitria configuration.
 
 =item config_file
 
-This is the default configuration file for airtime.
+This is the default configuration file for emitria.
 
-/usr/local/etc/airtime/airtime.conf
+/usr/local/etc/emitria/emitria.conf
 
 Typically it shouldn't need to be changed but can be set if your
 installation is unusual.
@@ -31,10 +38,72 @@ installation is unusual.
 =cut
 
 has config_file   => (
-                        is => 'rw',
+                        is    => 'rw',
                         isa   => 'Str',
-                        default  => '/usr/local/etc/airtime/airtime.conf',
+                        lazy  => 1,
+                        builder  => '_get_config_file',
                      );
+
+sub _get_config_file
+{
+    my ( $self ) = @_;
+
+    my $file;
+
+    my $test_config =  file(curdir, 't', 'etc', 'emitria.conf')->resolve();
+
+    if ( -f $test_config )
+    {
+        $file = $test_config->stringify();
+    }
+    elsif ( -f $ENV{EMITRIA_CONFIG} )
+    {
+        $file = $ENV{EMITRIA_CONFIG};
+    }
+    else
+    {
+        my $share_file = file($self->share_dir(), 'etc', 'emitria.conf'); 
+
+        if ( -d $share_file )
+        {
+            $file = $share_file->stringify();
+        }
+    }
+
+    return $file;
+}
+
+=item share_dir
+
+This returns the path to the shared data directory.
+
+=cut
+
+has share_dir  => (
+                     is    => 'rw',
+                     isa   => 'Str',
+                     lazy  => 1,
+                     builder  => '_get_share_dir',
+                  );
+
+sub _get_share_dir
+{
+   my ($self) = @_;
+   my $share_dir = ".";
+   my $blib_share_dir = dir( curdir, 'blib', 'lib', 'auto', 'share', 'dist', 'Emitria' );
+
+   if ( -d $blib_share_dir )
+   {
+      $share_dir = $blib_share_dir->stringify();
+   }
+   elsif ( -d dist_dir('Emitria') )
+   {
+      $share_dir = dist_dir('Emitria');
+   }
+
+   return $share_dir;
+
+}
 
 =item config_object
 
@@ -82,9 +151,9 @@ sub _get_database
 
 [database]
 host = localhost
-dbname = airtime
-dbuser = airtime
-dbpass = airtime
+dbname = emitria
+dbuser = emitria
+dbpass = emitria
 
 
 =cut
@@ -97,7 +166,7 @@ Returns the host from the database (host key)
 
 has dbhost  => (
                   is => 'ro',
-                  isa   => 'Str',
+                  isa   => 'Maybe[Str]',
                   lazy  => 1,
                   builder  => '_get_db_host',
                );
@@ -111,13 +180,13 @@ sub _get_db_host
 
 =item dbname
 
-returns the database name.
+returns the database name. If not set in the configuration then it defaults to 'emitria.db' to help testing
 
 =cut
 
 has dbname  => (
                   is => 'ro',
-                  isa   => 'Str',
+                  isa   => 'Maybe[Str]',
                   lazy  => 1,
                   builder  => '_get_db_name',
                );
@@ -126,7 +195,12 @@ sub _get_db_name
 {
    my ( $self ) = @_;
 
-   return $self->database()->{dbname};
+   my $dbname;
+
+   if(!defined( $dbname = $self->database()->{dbname}))
+   {
+       $dbname = 'emitria.db';
+   }
 }
 
 =item dbuser
@@ -137,7 +211,7 @@ returns the db user.
 
 has dbuser  => (
                   is => 'ro',
-                  isa   => 'Str',
+                  isa   => 'Maybe[Str]',
                   lazy  => 1,
                   builder  => '_get_db_user',
                );
@@ -157,7 +231,7 @@ returns the db passsword
 
 has dbpass  => (
                   is => 'ro',
-                  isa   => 'Str',
+                  isa   => 'Maybe[Str]',
                   lazy  => 1,
                   builder  => '_get_db_pass',
                );
@@ -178,23 +252,57 @@ configuration.
 
 has db_dsn  => (
                   is => 'ro',
-                  isa   => 'Str',
+                  isa   => 'Maybe[Str]',
                   lazy  => 1,
                   builder  => '_get_dsn',
                );
 
 sub _get_dsn
 {
-   my ( $self ) = @_;
+   my ($self) = @_;
 
-   my $dsn = sprintf 'dbi:Pg:dbname=%s', $self->dbname();
-   
-   if ( $self->dbhost() ne 'localhost' )
+   my $dsn;
+
+   if ( !defined( $dsn = $self->database()->{dsn} ) )
    {
-      $dsn .= sprintf ':host=s', $self->dbhost();
+
+      $dsn = sprintf '%s:dbname=%s', $self->driver(), $self->dbname();
+
+      if ( defined $self->dbhost() && ($self->dbhost() ne 'localhost' ))
+      {
+         $dsn .= sprintf ':host=s', $self->dbhost();
+      }
    }
 
    return $dsn;
+}
+
+=item driver
+
+This is the name of the DBD driver that will be used.  It is not required if the
+full DSN is supplied in the configuration.  It defaults to 'dbi:SQLite'.
+
+=cut
+
+has driver  => (
+                  is => 'ro',
+                  isa   => 'Str',
+                  lazy  => 1,
+                  builder  => '_get_driver',
+               );
+
+sub _get_driver
+{
+    my ( $self ) = @_;
+
+    my $driver;
+
+    if (!defined($driver = $self->database()->{driver}))
+    {
+        $driver = 'dbi:SQLite',
+    }
+
+    return $driver;
 }
 
 =back
