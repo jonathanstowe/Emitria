@@ -37,6 +37,13 @@ lib/Emitria/Schema/Result/User.pm
 lib/Emitria/Schema/Result/UserToken.pm
 lib/Emitria/Schema/Result/Webstream.pm
 lib/Emitria/Schema/Result/WebstreamMetadata.pm
+lib/Emitria/Web.pm
+lib/Emitria/Web/Controller/Root.pm
+bin/emitria_web_cgi.pl
+bin/emitria_web_create.pl
+bin/emitria_web_fastcgi.pl
+bin/emitria_web_server.pl
+bin/emitria_web_test.pl
 LICENSE
 MANIFEST			This list of files
 MANIFEST.SKIP
@@ -50,4 +57,5 @@ t/etc/emitria.conf
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+t/01-web_app.t
 share/etc/emitria.conf
