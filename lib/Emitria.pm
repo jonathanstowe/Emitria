@@ -53,6 +53,32 @@ has config  => (
                );
 
 
+=item connect_info
+
+This returns a Hash Reference that is suitable to be passed as C<connect_info>
+to e.g. a L<Catalyst::Model> config.
+
+=cut
+
+has connect_info  => (
+                        is => 'ro',
+                        isa   => 'HashRef',
+                        lazy  => 1,
+                        builder  => '_get_connect_info',
+                     );
+
+sub _get_connect_info
+{
+    my ( $self ) = @_;
+
+    return {
+               dsn   => $self->db_dsn(),
+               user  => $self->dbuser(),
+               password => $self->dbpass(),
+           };
+
+}
+
 =item database
 
 Returns the connected DBIx::Class::Schema object

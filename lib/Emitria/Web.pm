@@ -4,18 +4,6 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-# Set flags and add plugins for the application.
-#
-# Note that ORDERING IS IMPORTANT here as plugins are initialized in order,
-# therefore you almost certainly want to keep ConfigLoader at the head of the
-# list if you're using it.
-#
-#         -Debug: activates the debug mode for very useful log messages
-#   ConfigLoader: will load the configuration from a Config::General file in the
-#                 application's home directory
-# Static::Simple: will serve static files from the application's root
-#                 directory
-
 use Catalyst qw/
     -Debug
     ConfigLoader
@@ -23,6 +11,8 @@ use Catalyst qw/
 /;
 
 extends 'Catalyst';
+
+use Emitria;
 
 our $VERSION = '0.01';
 
@@ -35,11 +25,15 @@ our $VERSION = '0.01';
 # with an external configuration file acting as an override for
 # local deployment.
 
+my $e = Emitria->new();
+
 __PACKAGE__->config(
     name => 'Emitria::Web',
-    # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-    enable_catalyst_header => 1, # Send X-Catalyst header
+    enable_catalyst_header => 1, 
+    'Model::DB' => {
+        connect_info => $e->connect_info(),
+    },
 );
 
 # Start the application
