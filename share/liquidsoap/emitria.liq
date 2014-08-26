@@ -1,11 +1,11 @@
-%include "/usr/local/etc/airtime/liquidsoap.cfg"
+%include "/usr/local/etc/emitria/liquidsoap.cfg"
 
 set("log.file.path", log_file)
 set("server.telnet", false)
 set("server.socket", true);
-set("server.socket.path","/var/run/airtime-liquidsoap.sock");
+set("server.socket.path","/var/run/emitria-liquidsoap.sock");
 
-set("init.daemon.pidfile.path", "/var/run/airtime-liquidsoap.pid")
+set("init.daemon.pidfile.path", "/var/run/emitria-liquidsoap.pid")
 
 %include "library/pervasives.liq"
 
@@ -49,7 +49,7 @@ def create_source()
     l = amplify(1., override="replay_gain", l)
 
     # the crossfade function controls fade in/out
-    l = crossfade_airtime(l)
+    l = crossfade_emitria(l)
 
     l = on_metadata(notify_queue, l)
     sources := list.append([l], !sources)
@@ -190,7 +190,7 @@ def make_scheduled_play_unavailable()
 end
 
 def update_source_status(sourcename, status) =
-    command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --source-name=#{sourcename} --source-status=#{status} &"
+    command = "/usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/notify.sh --source-name=#{sourcename} --source-status=#{status} &"
     system(command)
     log(command)
 end
@@ -215,7 +215,7 @@ end
 def check_master_dj_client(user,password) =
     log("master connected")
     #get the output of the php script
-    ret = get_process_lines("python /usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/liquidsoap_auth.py --master #{user} #{password}")
+    ret = get_process_lines("python /usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/liquidsoap_auth.py --master #{user} #{password}")
     #ret has now the value of the live client (dj1,dj2, or djx), or "ERROR"/"unknown" ...
     ret = list.hd(ret)
 
@@ -226,7 +226,7 @@ end
 def check_dj_client(user,password) =
     log("live dj connected")
     #get the output of the php script
-    ret = get_process_lines("python /usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/liquidsoap_auth.py --dj #{user} #{password}")
+    ret = get_process_lines("python /usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/liquidsoap_auth.py --dj #{user} #{password}")
     #ret has now the value of the live client (dj1,dj2, or djx), or "ERROR"/"unknown" ...
     hd = list.hd(ret)
     log("Live DJ authenticated: #{hd}")
@@ -401,6 +401,6 @@ if s3_enable == true then
                 s3_connected, s3_description, s3_channels)
 end
 
-command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --liquidsoap-started &"
+command = "/usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/notify.sh --liquidsoap-started &"
 log(command)
 system(command)
