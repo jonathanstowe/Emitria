@@ -30,7 +30,7 @@ my $builder = Module::Build->new(
       'MooseX::MarkAsMethods'  => 0,
       'MooseX::NonMoose'       => 0,
    },
-   share_dir   => [qw(share/etc share/templates share/htdocs)],
+   share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
    add_to_cleanup     => ['Emetria-*'],
    meta_merge         => {
