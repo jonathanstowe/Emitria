@@ -17,7 +17,7 @@ use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto PassphraseColumn));
 
 =head1 DESCRIPTION
 
@@ -48,14 +48,16 @@ access to the artifacts of that station.
   data_type: "integer"
   is_nullable: 0
 
-=item login
+=item username
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
   size: 255
 
-=item pass
+=item password
+
+Crypted password
 
   data_type: 'varchar'
   default_value: (empty string)
@@ -136,18 +138,20 @@ __PACKAGE__->add_columns(
       is_foreign_key => 1,
       is_nullable => 0,
    },
-   login => {
+   username => {
       data_type     => "varchar",
-      default_value => "",
       is_nullable   => 0,
       size          => 255
    },
-   pass => {
-      data_type     => "varchar",
-      default_value => "",
-      is_nullable   => 0,
-      size          => 255
-   },
+   password => {
+        passphrase       => 'rfc2307',
+        passphrase_class => 'SaltedDigest',
+        passphrase_args  => {
+            algorithm   => 'SHA-1',
+            salt_random => 20.
+        },
+        passphrase_check_method => 'check_password',
+    },
    type => {
       data_type     => "char",
       default_value => "U",
@@ -232,17 +236,17 @@ __PACKAGE__->set_primary_key("id");
 =over 4
 
 
-=item C<user_login_idx>
+=item C<user_username_idx>
 
 =over 4
 
-=item * L</login>
+=item * L</username>
 
 =back
 
 =cut
 
-__PACKAGE__->add_unique_constraint("user_login_idx", ["login"]);
+__PACKAGE__->add_unique_constraint("user_username_idx", ["username"]);
 
 =back
 

@@ -4,11 +4,16 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
-use Catalyst qw/
+use Catalyst qw(
     -Debug
     ConfigLoader
     Static::Simple
-/;
+    StackTrace
+    Authentication
+    Session
+    Session::Store::File
+    Session::State::Cookie
+   );
 
 extends 'Catalyst';
 
@@ -16,14 +21,6 @@ use Emitria;
 
 our $VERSION = '0.01';
 
-# Configure the application.
-#
-# Note that settings in emitria_web.conf (or other external
-# configuration file that you set up manually) take precedence
-# over this when using ConfigLoader. Thus configuration
-# details given here can function as a default configuration,
-# with an external configuration file acting as an override for
-# local deployment.
 
 my $e = Emitria->new();
 
@@ -33,6 +30,13 @@ __PACKAGE__->config(
     enable_catalyst_header => 1, 
     'Model::DB' => {
         connect_info => $e->connect_info(),
+    },
+   'Plugin::Authentication' => {
+        default => {
+            class           => 'SimpleDB',
+            user_model      => 'DB::User',
+            password_type   => 'self_check',
+        },
     },
 );
 

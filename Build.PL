@@ -26,6 +26,7 @@ my $builder = Module::Build->new(
       'DateTime'               => 0,
       'DBIx::Class'            => 0,
       'DBIx::Class::TimeStamp' => '0.14',
+      'DBIx::Class::PassphraseColumn'  =>  '0.02',
       'Config::Tiny'           => 0,
       'MooseX::MarkAsMethods'  => 0,
       'MooseX::NonMoose'       => 0,
