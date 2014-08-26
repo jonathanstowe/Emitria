@@ -5,6 +5,6 @@ use Test::More;
 
 use Catalyst::Test 'Emitria::Web';
 
-ok( request('/')->is_success, 'Request should succeed' );
+is( request('/')->code(), 302, 'Request should redirect' );
 
 done_testing();

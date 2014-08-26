@@ -1,4 +1,5 @@
 package Emitria::Web;
+
 use Moose;
 use namespace::autoclean;
 
@@ -37,6 +38,9 @@ __PACKAGE__->config(
             user_model      => 'DB::User',
             password_type   => 'self_check',
         },
+    },
+    'View::HTML'  => {
+        INCLUDE_PATH => $e->template_path(),
     },
 );
 

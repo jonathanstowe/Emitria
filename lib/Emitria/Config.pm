@@ -73,6 +73,46 @@ sub _get_config_file
     return $file;
 }
 
+=item template_path
+
+This returns an ArrayRef of places that the templates might be found.
+
+This probably should be put something more web specific.
+
+=cut
+
+has template_path => (
+                        is => 'ro',
+                        isa   => 'ArrayRef',
+                        lazy  => 1,
+                        builder  => '_get_template_dirs',
+                     );
+
+sub _get_template_dirs
+{
+    my ( $self ) = @_;
+
+    my @dirs;
+    my $shared_template = dir($self->share_dir(), 'templates');
+
+    if ( defined $ENV{EMITRIA_TEMPLATES} && -d $ENV{EMITRIA_TEMPLATES} )
+    {
+        push @dirs, $ENV{EMITRIA_TEMPLATES};
+    }
+    if ( -d $shared_template )
+    {
+        push @dirs, $shared_template->stringify();
+    }
+
+    my $test_templates =  dir(curdir, 'share', 'templates');
+
+    if ( -d $test_templates )
+    {
+        push @dirs, $test_templates->stringify();
+    }
+    return \@dirs;
+}
+
 =item share_dir
 
 This returns the path to the shared data directory.
