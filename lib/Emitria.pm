@@ -49,7 +49,7 @@ has config  => (
                   isa   => 'Emitria::Config',
                   lazy  => 1,
                   default => sub { return Emitria::Config->new() },
-                  handles  => [qw(db_dsn dbuser dbpass template_path)],
+                  handles  => [qw(db_dsn dbuser dbpass template_path htdocs_dir)],
                );
 
 

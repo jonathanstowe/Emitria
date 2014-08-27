@@ -6,6 +6,7 @@ extends 'Catalyst::View::TT';
 
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
+    PROCESS => 'html.tt',
     render_die => 1,
 );
 

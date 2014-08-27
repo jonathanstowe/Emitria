@@ -29,6 +29,7 @@ __PACKAGE__->config(
     name => 'Emitria::Web',
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1, 
+    root => $e->htdocs_dir(),
     'Model::DB' => {
         connect_info => $e->connect_info(),
     },

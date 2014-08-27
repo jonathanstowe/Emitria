@@ -113,6 +113,44 @@ sub _get_template_dirs
     return \@dirs;
 }
 
+=item htdocs_dir
+
+Returns a plausible directory for the htdocs that will be used for the
+root for serving static content.
+
+=cut
+
+has htdocs_dir => (
+                     is => 'ro',
+                     isa   => 'Str',
+                     lazy  => 1,
+                     builder  => '_get_htdocs_dir',
+                  );
+
+sub _get_htdocs_dir
+{
+   my ($self) = @_;
+
+   my $htdocs;
+   my $shared_htdocs = dir( $self->share_dir(), 'htdocs' );
+
+   if ( -d $shared_htdocs )
+   {
+      $htdocs = $shared_htdocs->stringify();
+   }
+   else
+   {
+
+      my $test_htdocs = dir( curdir, 'share', 'htdocs' );
+
+      if ( -d $test_htdocs )
+      {
+         $htdocs = $test_htdocs->stringify();
+      }
+   }
+   return $htdocs;
+}
+
 =item share_dir
 
 This returns the path to the shared data directory.
