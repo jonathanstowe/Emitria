@@ -1,0 +1,10 @@
+#!perl
+
+use strict;
+use warnings;
+
+use Emitria;
+
+my $e = Emitria->new();
+
+$e->resultset('User')->create({username => 'admin', password => 'something', station => { name => 'default'}});

@@ -1,0 +1,10 @@
+#!perl
+
+use strict;
+use warnings;
+
+use Emitria;
+
+my $e = Emitria->new();
+
+$e->database()->deploy();
