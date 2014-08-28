@@ -144,6 +144,7 @@ __PACKAGE__->add_columns(
       size          => 255
    },
    password => {
+        data_type    => 'varchar',
         size         => 255,
         passphrase       => 'rfc2307',
         passphrase_class => 'SaltedDigest',
@@ -153,12 +154,6 @@ __PACKAGE__->add_columns(
         },
         passphrase_check_method => 'check_password',
     },
-   type => {
-      data_type     => "char",
-      default_value => "U",
-      is_nullable   => 0,
-      size          => 1
-   },
    first_name => {
       data_type     => "varchar",
       default_value => "",
@@ -268,6 +263,66 @@ Related object: L<Emitria::Schema::Result::Station>
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
+=item user_roles
+
+This is a relation to the L<Emitria::Schema::Result::UserRole> only used as an intermediary.
+
+=cut
+
+__PACKAGE__->has_many(user_roles => 'Emitria::Schema::Result::UserRole', 'user_id',{ cascade_copy => 0, cascade_delete => 1 });
+
+=item roles
+
+This is a C<many_to_many> "relation" to L<Emitria::Schema::Result::UserRole> via C<user_roles>
+
+=cut
+
+__PACKAGE__->many_to_many(roles  => 'user_roles', 'role');
+
+
+=item permissions
+
+A resultset of L<Emitria::Schema::Result::Permission> associated with this user.
+
+=cut
+
+sub permissions
+{
+   my ($self) = @_;
+
+   # there has to be a better way
+   return $self->related_resultset('user_roles')->related_resultset('role')->related_resultset('role_permissions')->related_resultset('permission');
+}
+
+
+=item _permission_names
+
+This is a cached hashref of the permiision names a user has. This is to support C<can> which is a delegate of C<exists>
+
+=cut
+
+has _permission_names => (
+   is => 'ro',
+   isa   => 'HashRef',
+   lazy => 1,
+   traits   => ['Hash'],
+   handles  => { can_do => 'exists' },
+   builder  => '_get_permission_names',
+);
+
+sub _get_permission_names
+{
+    my ( $self ) = @_;
+
+    my $names = {};
+
+    foreach my $name ($self->permissions()->get_column('name')->all() )
+    {
+        $names->{$name}++;
+    }
+
+    return $names;
+}
 
 =item blocks
 
@@ -284,7 +339,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=item files_editedbies
+=item files_edited
 
 Type: has_many
 
@@ -292,12 +347,7 @@ Related object: L<Emitria::Schema::Result::File>
 
 =cut
 
-__PACKAGE__->has_many(
-  files_editedbies =>
-  "Emitria::Schema::Result::File",
-  { "foreign.editedby" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
+__PACKAGE__->has_many( files_edited => "Emitria::Schema::Result::File",'editedby', { cascade_copy => 0, cascade_delete => 0 });
 
 =item files_owners
 
@@ -344,7 +394,7 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=item prefs
+=item preferences
 
 Type: has_many
 

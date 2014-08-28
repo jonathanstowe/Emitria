@@ -26,6 +26,28 @@ lives_ok { $db->deploy() } "deploy the test database";
 
 ok(-f $db_name, "and the DB was created");
 
+ok(my $station = $db->resultset('Station')->find_or_create({name => 'test_station'}), "create a station");
+
+ok(my $permission = $db->resultset('Permission')->find_or_create({name => 'test_permission'}), "create a permission");
+
+ok(my $role = $station->create_related(roles => {name => 'test_role'}), "create a role");
+
+lives_ok { $role->add_to_permissions($permission) } "add permission to role";
+
+is($role->permissions()->count(), 1, "and the role has permissions");
+
+ok(my $user = $station->create_related(users => {username => 'test_user', password => 'foo'}), "create a user");
+
+lives_ok { $user->add_to_roles($role) } "add role to user";
+
+is($user->roles()->count(),1, "user has one role");
+is($user->permissions()->count(),1, "user has one permissions");
+
+ok($user->can_do($permission->name()), "user can do the permission");
+ok(!$user->can('xest_permission'), "user cant do another permission");
+
+
+
 END
 {
     if ( $db_name )

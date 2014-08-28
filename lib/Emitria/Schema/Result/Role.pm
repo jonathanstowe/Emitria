@@ -92,6 +92,9 @@ __PACKAGE__->add_columns(
    }
 );
 
+__PACKAGE__->set_primary_key('id');
+
+__PACKAGE__->add_unique_constraint(unq_station_role => [qw(station_id name)]);
 
 =item station
 
@@ -105,6 +108,23 @@ Related object: L<Emitria::Schema::Result::Station>
 =cut
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
+
+=item role_permissions
+
+This is a relation to the L<Emitria::Schema::Result::UserRole> only used as an intermediary.
+
+=cut
+
+__PACKAGE__->has_many(role_permissions => 'Emitria::Schema::Result::RolePermission', 'role_id',{ cascade_copy => 0, cascade_delete => 1 });
+
+=item permissions
+
+This is a C<many_to_many> "relation" to L<Emitria::Schema::Result::Permission> via C<role_permissions>
+
+=cut
+
+__PACKAGE__->many_to_many(permissions  => 'role_permissions', 'permission');
 
 
 =back

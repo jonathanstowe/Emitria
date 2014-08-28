@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::UserRole;
+package Emitria::Schema::Result::RolePermission;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::UserRole
+Emitria::Schema::Result::RolePermission
 
 =cut
 
@@ -17,18 +17,18 @@ use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto PassphraseColumn));
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
 
 =head1 DESCRIPTION
 
 A L<DBIx::Class::ResultSource> that describes the relationship between a
-user and a role.
+permission and a role
 
-=head2 TABLE: C<user_role>
+=head2 TABLE: C<role_permission>
 
 =cut
 
-__PACKAGE__->table("user_role");
+__PACKAGE__->table("role_permission");
 
 =head2 METHODS
 
@@ -40,9 +40,9 @@ __PACKAGE__->table("user_role");
   is_auto_increment: 1
   is_nullable: 0
 
-=item user_id
-
 =item role_id
+
+=item permission_id
 
 =cut
 
@@ -52,12 +52,12 @@ __PACKAGE__->add_columns(
            is_auto_increment => 1,
            is_nullable       => 0,
    },
-   user_id => {
+   role_id => {
                    data_type      => "integer",
                    is_foreign_key => 1,
                    is_nullable    => 0,
    },
-   role_id => {
+   permission_id => {
                    data_type      => "integer",
                    is_foreign_key => 1,
                    is_nullable    => 0,
@@ -77,18 +77,18 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 
-=item user
-
-=cut
-
-__PACKAGE__->belongs_to(user => 'Emitria::Schema::Result::User', 'user_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
-
 =item role
 
+=cut
+
+__PACKAGE__->belongs_to(role => 'Emitria::Schema::Result::Role', 'role_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
+=item permission
+
 
 =cut
 
-__PACKAGE__->belongs_to(role => 'Emitria::Schema::Result::Role', 'role_id',{ is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+__PACKAGE__->belongs_to(permission => 'Emitria::Schema::Result::Permission', 'permission_id',{ is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 =back
 

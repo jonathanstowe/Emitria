@@ -17,144 +17,74 @@ use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
 
-__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto PassphraseColumn));
 
 =head1 DESCRIPTION
 
-L<DBIx::Class::ResultSource>
+A L<DBIx::Class::ResultSource> that describes a "user".
 
 =head2 TABLE: C<permission>
 
 =cut
 
-__PACKAGE__->table("permssion");
+__PACKAGE__->table("permission");
 
 =head2 METHODS
 
 =over 4
 
-=item permid
+=item id
 
   data_type: 'integer'
+  is_auto_increment: 1
   is_nullable: 0
 
-=item user_id
-
-  data_type: 'integer'
-  is_foreign_key: 1
-  is_nullable: 1
-
-=item action
+=item name
 
   data_type: 'varchar'
-  is_nullable: 1
-  size: 20
-
-=item obj
-
-  data_type: 'integer'
-  is_nullable: 1
-
-=item type
-
-  data_type: 'char'
-  is_nullable: 1
-  size: 1
+  default_value: (empty string)
+  is_nullable: 0
+  size: 255
 
 =cut
 
 __PACKAGE__->add_columns(
-   permid => {
-      data_type   => "integer",
-      is_nullable => 0
+   id => {
+           data_type         => "integer",
+           is_auto_increment => 1,
+           is_nullable       => 0,
    },
-   user_id => {
-      data_type      => "integer",
-      is_foreign_key => 1,
-      is_nullable    => 1
+   name => {
+             data_type   => "varchar",
+             is_nullable => 0,
+             size        => 255
    },
-   action => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 20
+   description => {
+             data_type   => "varchar",
+             is_nullable => 1,
+             size        => 255
    },
-   obj => {
-      data_type   => "integer",
-      is_nullable => 1
+
+   date_created => {
+                     data_type     => 'datetime',
+                     set_on_create => 1,
+                     is_nullable   => 0,
    },
-   type => {
-      data_type   => "char",
-      is_nullable => 1,
-      size        => 1
-   },
+   last_modified => {
+                      data_type     => 'datetime',
+                      set_on_update => 1,
+                      set_on_create => 0,
+                      is_nullable   => 1,
+   }
 );
 
-=back
+__PACKAGE__->set_primary_key('id');
 
-=head2 PRIMARY KEY
+__PACKAGE__->add_unique_constraint(unq_permission => [qw(name)]);
 
-=over 4
-
-=item * L</permid>
 
 =back
 
 =cut
-
-__PACKAGE__->set_primary_key("permid");
-
-
-=head2 UNIQUE CONSTRAINTS
-
-=over 4
-
-
-=item C<perms_all_idx>
-
-=over 4
-
-=item * L</user>
-
-=item * L</action>
-
-=item * L</obj>
-
-=back
-
-=cut
-
-__PACKAGE__->add_unique_constraint("perms_all_idx", ["user_id", "action", "obj"]);
-
-=back
-
-=head2 RELATIONS
-
-=over 4
-
-
-=item user
-
-Type: belongs_to
-
-Related object: L<Emitria::Schema::Result::User>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  user =>
-  "Emitria::Schema::Result::User",
-  { id => "user_id" },
-  {
-    is_deferrable => 0,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "NO ACTION",
-  },
-);
-
-
-
 
 __PACKAGE__->meta()->make_immutable();
-
-1;
