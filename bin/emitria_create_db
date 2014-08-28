@@ -8,3 +8,38 @@ use Emitria;
 my $e = Emitria->new();
 
 $e->database()->deploy();
+
+my $perms = $e->resultset('Permission');
+
+my @permissions = qw(
+add_user
+edit_user
+add_show
+edit_show
+cancel_show
+add_file
+edit_file
+delete_file
+add_stream
+edit_stream
+delete_stream
+stop_stream
+start_stream
+edit_station
+add_role
+edit_role
+);
+
+my $station = $e->resultset('Station')->create({name => 'Emetria'});
+
+my $user = $station->create_related( users => {username => 'admin', password => 'something'});
+
+my $role = $station->create_related(roles => { name => 'admin' });
+
+foreach my $perm_name ( @permissions )
+{
+    my $perm = $perms->create({name => $perm_name });
+    $role->add_to_permissions($perm);
+}
+
+$user->add_to_roles($role);
