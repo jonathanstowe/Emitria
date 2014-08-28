@@ -144,6 +144,7 @@ __PACKAGE__->add_columns(
       size          => 255
    },
    password => {
+        size         => 255,
         passphrase       => 'rfc2307',
         passphrase_class => 'SaltedDigest',
         passphrase_args  => {
@@ -406,8 +407,6 @@ __PACKAGE__->has_many(
 =back
 
 =cut
-
-
 
 __PACKAGE__->meta()->make_immutable();
 
