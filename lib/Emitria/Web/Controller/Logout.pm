@@ -21,14 +21,14 @@ Catalyst Controller.
 
 =cut
 
-sub index :Path :Args(0) {
-    my ($self, $c) = @_;
- 
-    # Clear the user's state
-    $c->logout;
- 
-    # Send the user to the starting point
-    $c->response->redirect($c->uri_for('/login'));
+sub index : Path : Args(0)
+{
+   my ( $self, $c ) = @_;
+
+   $c->stash->{current_view} = 'HTML';
+   $c->logout();
+
+   $c->response->redirect( $c->uri_for('/login') );
 }
 
 =head1 AUTHOR

@@ -42,6 +42,7 @@ sub auto : Private
 {
    my ( $self, $c ) = @_;
 
+   $c->stash->{current_view} = 'HTML';
    my $rc = 1;
    if ( $c->controller() ne $c->controller('Login') )
    {
