@@ -29,6 +29,7 @@ The root page (/)
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
+    $c->stash->{current_view} = 'HTML';
     $c->stash(template => 'root.tt');    
 }
 

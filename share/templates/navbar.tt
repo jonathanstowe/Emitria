@@ -27,9 +27,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">[% c.user.username %]<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="user-display-name">[% c.user.display_name %]</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Edit Profile</a></li>
+                  <li>
+							<a href="/my/detail/" data-toggle="modal" data-target="#myModal">
+ 								Update Profile
+							</a>
+						</li>
                   <li><a href="#">Change Password</a></li>
                   <li class="divider"></li>
                   <li><a href="#">My Stuff</a></li>
@@ -40,3 +44,4 @@
           </div>
         </div>
       </div>
+		<div id="myModal" class="modal fade"><div class="modal-dialog"><div class="modal-content"></div></div></div>

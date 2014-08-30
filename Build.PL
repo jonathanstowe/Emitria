@@ -22,6 +22,7 @@ my $builder = Module::Build->new(
    },
    requires => {
       perl                     => 5.008,
+      'Catalyst::Runtime'      => '5.90071',
       'Moose'                  => 0,
       'DateTime'               => 0,
       'DBIx::Class'            => 0,
@@ -33,7 +34,7 @@ my $builder = Module::Build->new(
    },
    share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
-   add_to_cleanup     => ['Emetria-*'],
+   add_to_cleanup     => ['emitria.db','Emetria-*'],
    meta_merge         => {
       resources => { repository => 'https://github.com/jonathanstowe/Emitria' }
    },

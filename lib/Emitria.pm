@@ -75,6 +75,7 @@ sub _get_connect_info
                dsn   => $self->db_dsn(),
                user  => $self->dbuser(),
                password => $self->dbpass(),
+               AutoCommit  => 1,
            };
 
 }

@@ -1,0 +1,49 @@
+      <div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title" id="ProfileModalLabel">Update User Details</h4>
+		  	<div id="user-detail-result"></div>
+      </div>
+      <div class="modal-body">
+
+			<form method="post" id="my-userdetail-form" >
+            <input type="hidden" name="user_id" value="[% c.user.id %]" id="user_id">
+				<div class="form-group">
+            	<label class="control-label col-xs-3" for="firstName">First Name:</label>
+            	<div class="col-xs-9">
+                	<input type="text" class="form-control" name="first_name" id="firstName" placeholder="First Name" value="[% c.user.first_name %]">
+            	</div>
+        		</div>
+        		<div class="form-group">
+            	<label class="control-label col-xs-3" for="lastName">Last Name:</label>
+            	<div class="col-xs-9">
+               	<input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last Name" value="[% c.user.last_name %]">
+            	</div>
+        </div>
+         	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         	<button type="submit" class="btn btn-primary">Save changes</button>
+			</form>
+      </div>
+      <div class="modal-footer">
+      </div>
+		<script>
+    		$(function(){
+       		$('#my-userdetail-form').on('submit', function(e){
+            		e.preventDefault();
+            		$.ajax({
+                		url: "/my/detail/",
+                		type: "POST",
+                		data: $("#my-userdetail-form").serialize(),
+                		success: function(data){
+                        var first = $('#firstName').val() || '';
+                        var last  = $('#lastName').val()  || '';
+                        if ( first.length > 0 && last.length > 0 )
+                        {
+                           $('#user-display-name').text(first + ' ' + last);
+                        }
+                        $("#user-detail-result").html('<div class="alert alert-success"><button data-dismiss="alert" type="button" class="close">×</button>Changes saved</div>');
+                		}
+            		});
+       		}); 
+    		});
+
+		</script>

@@ -43,6 +43,9 @@ __PACKAGE__->config(
     'View::HTML'  => {
         INCLUDE_PATH => $e->template_path(),
     },
+    'View::Form'  => {
+        INCLUDE_PATH => $e->template_path(),
+    },
 );
 
 # Start the application

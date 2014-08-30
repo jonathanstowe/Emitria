@@ -324,6 +324,26 @@ sub _get_permission_names
     return $names;
 }
 
+=item display_name
+
+Convience to returm first_name . last_name or username if that doesnt have a length.
+
+=cut
+
+sub display_name
+{
+    my ( $self ) = @_;
+
+    my $dn = $self->first_name();
+
+    if($self->last_name())
+    {
+        $dn .= ($dn ? ' ' : '') . $self->last_name();
+    }
+
+   return length $dn ? $dn : $self->username();
+}
+
 =item blocks
 
 Type: has_many
