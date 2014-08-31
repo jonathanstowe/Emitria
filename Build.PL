@@ -21,16 +21,20 @@ my $builder = Module::Build->new(
       'DBD::SQLite'     => 0,
    },
    requires => {
-      perl                     => 5.008,
-      'Catalyst::Runtime'      => '5.90071',
-      'Moose'                  => 0,
-      'DateTime'               => 0,
-      'DBIx::Class'            => 0,
-      'DBIx::Class::TimeStamp' => '0.14',
-      'DBIx::Class::PassphraseColumn'  =>  '0.02',
-      'Config::Tiny'           => 0,
-      'MooseX::MarkAsMethods'  => 0,
-      'MooseX::NonMoose'       => 0,
+      perl                                => 5.008,
+      'Catalyst::Runtime'                 => '5.90071',
+      'Catalyst::Action::REST'            => '1.15',
+      'Moose'                             => '2.1211',
+      'MooseX::MethodAttributes'          => '0.29',
+      'DateTime'                          => '1.06',
+      'DBIx::Class'                       => '0.08206',
+      'DBIx::Class::TimeStamp'            => '0.14',
+      'DBIx::Class::PassphraseColumn'     => '0.02',
+      'Catalyst::Model::DBIC::Schema'     => '0.64',
+      'Catalyst::Plugin::Authentication'  => '0.10022',
+      'Config::Tiny'                      => '2.14',
+      'MooseX::MarkAsMethods'             => '0.15',
+      'MooseX::NonMoose'                  => '0.26',
    },
    share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
@@ -38,7 +42,6 @@ my $builder = Module::Build->new(
    meta_merge         => {
       resources => { repository => 'https://github.com/jonathanstowe/Emitria' }
    },
-
 );
 
 $builder->create_build_script();
