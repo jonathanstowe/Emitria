@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::ShowDay;
+package Emitria::Schema::Result::Show::Day;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::ShowDay
+Emitria::Schema::Result::Show::Day
 
 =cut
 

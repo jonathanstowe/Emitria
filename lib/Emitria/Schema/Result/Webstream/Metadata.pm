@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::PlayoutHistoryMetadata;
+package Emitria::Schema::Result::Webstream::Metadata;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::PlayoutHistoryMetadata
+Emitria::Schema::Result::Webstream::Metadata
 
 =cut
 
@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<playout_history_metadata>
+=head2 TABLE: C<webstream_metadata>
 
 =cut
 
-__PACKAGE__->table("playout_history_metadata");
+__PACKAGE__->table("webstream_metadata");
 
 =head2 METHODS
 
@@ -39,23 +39,22 @@ __PACKAGE__->table("playout_history_metadata");
   is_auto_increment: 1
   is_nullable: 0
 
-=item history_id
+=item instance_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=item key
+=item start_time
+
+  data_type: 'timestamp'
+  is_nullable: 0
+
+=item liquidsoap_data
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 128
-
-=item value
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 128
+  size: 1024
 
 =cut
 
@@ -65,20 +64,19 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
-   history_id => {
+   instance_id => {
       data_type      => "integer",
       is_foreign_key => 1,
       is_nullable    => 0
    },
-   key => {
-      data_type   => "varchar",
-      is_nullable => 0,
-      size        => 128
+   start_time => {
+      data_type   => "timestamp",
+      is_nullable => 0
    },
-   value => {
+   liquidsoap_data => {
       data_type   => "varchar",
       is_nullable => 0,
-      size        => 128
+      size        => 1024
    },
 );
 
@@ -101,18 +99,18 @@ __PACKAGE__->set_primary_key("id");
 =over 4
 
 
-=item history
+=item instance
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::PlayoutHistory>
+Related object: L<Emitria::Schema::Result::Schedule>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  history =>
-  "Emitria::Schema::Result::PlayoutHistory",
-  { id => "history_id" },
+  instance =>
+  "Emitria::Schema::Result::Schedule",
+  { id => "instance_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
@@ -120,5 +118,4 @@ __PACKAGE__->belongs_to(
 
 
 __PACKAGE__->meta()->make_immutable();
-
 1;

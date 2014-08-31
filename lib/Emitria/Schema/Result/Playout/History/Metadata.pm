@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::ShowRebroadcast;
+package Emitria::Schema::Result::Playout::History::Metadata;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::ShowRebroadcast
+Emitria::Schema::Result::Playout::History::Metadata
 
 =cut
 
@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<show_rebroadcast>
+=head2 TABLE: C<playout_history_metadata>
 
 =cut
 
-__PACKAGE__->table("show_rebroadcast");
+__PACKAGE__->table("playout_history_metadata");
 
 =head2 METHODS
 
@@ -39,22 +39,23 @@ __PACKAGE__->table("show_rebroadcast");
   is_auto_increment: 1
   is_nullable: 0
 
-=item day_offset
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 255
-
-=item start_time
-
-  data_type: 'time'
-  is_nullable: 0
-
-=item show_id
+=item history_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
+
+=item key
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 128
+
+=item value
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 128
 
 =cut
 
@@ -64,19 +65,20 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
-   day_offset => {
-      data_type   => "varchar",
-      is_nullable => 0,
-      size        => 255
-   },
-   start_time => {
-      data_type   => "time",
-      is_nullable => 0
-   },
-   show_id => {
+   history_id => {
       data_type      => "integer",
       is_foreign_key => 1,
       is_nullable    => 0
+   },
+   key => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 128
+   },
+   value => {
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 128
    },
 );
 
@@ -99,18 +101,18 @@ __PACKAGE__->set_primary_key("id");
 =over 4
 
 
-=item show
+=item history
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::Show>
+Related object: L<Emitria::Schema::Result::Playout::History>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  show =>
-  "Emitria::Schema::Result::Show",
-  { id => "show_id" },
+  history =>
+  "Emitria::Schema::Result::Playout::History",
+  { id => "history_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 

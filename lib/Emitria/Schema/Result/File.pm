@@ -848,13 +848,13 @@ __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Blockcontent>
+Related object: L<Emitria::Schema::Result::Block::Content>
 
 =cut
 
 __PACKAGE__->has_many(
   blockcontents =>
-  "Emitria::Schema::Result::Blockcontent",
+  "Emitria::Schema::Result::Block::Content",
   { "foreign.file_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -863,13 +863,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Playlistcontent>
+Related object: L<Emitria::Schema::Result::Playlist::Content>
 
 =cut
 
 __PACKAGE__->has_many(
   playlistcontents =>
-  "Emitria::Schema::Result::Playlistcontent",
+  "Emitria::Schema::Result::Playlist::Content",
   { "foreign.file_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -878,13 +878,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::PlayoutHistory>
+Related object: L<Emitria::Schema::Result::Playout::History>
 
 =cut
 
 __PACKAGE__->has_many(
   playout_histories =>
-  "Emitria::Schema::Result::PlayoutHistory",
+  "Emitria::Schema::Result::Playout::History",
   { "foreign.file_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -908,13 +908,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->has_many(
   show_instances =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { "foreign.file_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

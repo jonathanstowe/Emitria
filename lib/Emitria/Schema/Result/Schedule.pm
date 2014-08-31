@@ -218,13 +218,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::WebstreamMetadata>
+Related object: L<Emitria::Schema::Result::Webstream::Metadata>
 
 =cut
 
 __PACKAGE__->has_many(
   webstream_metadatas =>
-  "Emitria::Schema::Result::WebstreamMetadata",
+  "Emitria::Schema::Result::Webstream::Metadata",
   { "foreign.instance_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -253,13 +253,13 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->belongs_to(
   instance =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { id => "instance_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );

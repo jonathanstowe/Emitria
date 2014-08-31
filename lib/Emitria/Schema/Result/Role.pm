@@ -112,11 +112,11 @@ __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station
 
 =item role_permissions
 
-This is a relation to the L<Emitria::Schema::Result::UserRole> only used as an intermediary.
+This is a relation to the L<Emitria::Schema::Result::User::Role> only used as an intermediary.
 
 =cut
 
-__PACKAGE__->has_many(role_permissions => 'Emitria::Schema::Result::RolePermission', 'role_id',{ cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->has_many(role_permissions => 'Emitria::Schema::Result::Role::Permission', 'role_id',{ cascade_copy => 0, cascade_delete => 1 });
 
 =item permissions
 

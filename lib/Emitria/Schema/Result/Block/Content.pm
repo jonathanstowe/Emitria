@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Blockcontent;
+package Emitria::Schema::Result::Block::Content;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Blockcontent
+Emitria::Schema::Result::Block::Content
 
 =cut
 

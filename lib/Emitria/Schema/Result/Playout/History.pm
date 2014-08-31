@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::PlayoutHistory;
+package Emitria::Schema::Result::Playout::History;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::PlayoutHistory
+Emitria::Schema::Result::Playout::History
 
 =cut
 
@@ -112,13 +112,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::PlayoutHistoryMetadata>
+Related object: L<Emitria::Schema::Result::Playout::History::Metadata>
 
 =cut
 
 __PACKAGE__->has_many(
   playout_history_metadatas =>
-  "Emitria::Schema::Result::PlayoutHistoryMetadata",
+  "Emitria::Schema::Result::Playout::History::Metadata",
   { "foreign.history_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -147,13 +147,13 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->belongs_to(
   instance =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { id => "instance_id" },
   {
     is_deferrable => 0,

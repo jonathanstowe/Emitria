@@ -265,15 +265,15 @@ __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station
 
 =item user_roles
 
-This is a relation to the L<Emitria::Schema::Result::UserRole> only used as an intermediary.
+This is a relation to the L<Emitria::Schema::Result::User::Role> only used as an intermediary.
 
 =cut
 
-__PACKAGE__->has_many(user_roles => 'Emitria::Schema::Result::UserRole', 'user_id',{ cascade_copy => 0, cascade_delete => 1 });
+__PACKAGE__->has_many(user_roles => 'Emitria::Schema::Result::User::Role', 'user_id',{ cascade_copy => 0, cascade_delete => 1 });
 
 =item roles
 
-This is a C<many_to_many> "relation" to L<Emitria::Schema::Result::UserRole> via C<user_roles>
+This is a C<many_to_many> "relation" to L<Emitria::Schema::Result::User::Role> via C<user_roles>
 
 =cut
 
@@ -448,13 +448,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowHost>
+Related object: L<Emitria::Schema::Result::Show::Host>
 
 =cut
 
 __PACKAGE__->has_many(
   show_hosts =>
-  "Emitria::Schema::Result::ShowHost",
+  "Emitria::Schema::Result::Show::Host",
   { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -469,7 +469,7 @@ Related object: L<Emitria::Schema::Result::UsersToken>
 
 __PACKAGE__->has_many(
   user_tokens =>
-  "Emitria::Schema::Result::UserToken",
+  "Emitria::Schema::Result::User::Token",
   { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

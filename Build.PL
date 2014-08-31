@@ -39,7 +39,7 @@ my $builder = Module::Build->new(
    },
    share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
-   add_to_cleanup     => ['emitria.db','Emetria-*'],
+   add_to_cleanup     => ['emitria.db*','Emetria-*'],
    meta_merge         => {
       resources => { repository => 'https://github.com/jonathanstowe/Emitria' }
    },

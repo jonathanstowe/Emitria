@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::ShowInstance;
+package Emitria::Schema::Result::Show::Instance;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::ShowInstance
+Emitria::Schema::Result::Show::Instance
 
 =cut
 
@@ -185,13 +185,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::PlayoutHistory>
+Related object: L<Emitria::Schema::Result::Playout::History>
 
 =cut
 
 __PACKAGE__->has_many(
   playout_histories =>
-  "Emitria::Schema::Result::PlayoutHistory",
+  "Emitria::Schema::Result::Playout::History",
   { "foreign.instance_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -215,13 +215,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->has_many(
   show_instances =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { "foreign.instance_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -250,13 +250,13 @@ __PACKAGE__->belongs_to(
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->belongs_to(
   instance =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { id => "instance_id" },
   {
     is_deferrable => 0,

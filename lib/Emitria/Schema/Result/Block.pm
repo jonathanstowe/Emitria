@@ -149,13 +149,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Blockcontent>
+Related object: L<Emitria::Schema::Result::Block::Content>
 
 =cut
 
 __PACKAGE__->has_many(
   blockcontents =>
-  "Emitria::Schema::Result::Blockcontent",
+  "Emitria::Schema::Result::Block::Content",
   { "foreign.block_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -164,13 +164,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Blockcriteria>
+Related object: L<Emitria::Schema::Result::Block::Criteria>
 
 =cut
 
 __PACKAGE__->has_many(
   blockcriterias =>
-  "Emitria::Schema::Result::Blockcriteria",
+  "Emitria::Schema::Result::Block::Criteria",
   { "foreign.block_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -179,13 +179,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Playlistcontent>
+Related object: L<Emitria::Schema::Result::Playlist::Content>
 
 =cut
 
 __PACKAGE__->has_many(
   playlistcontents =>
-  "Emitria::Schema::Result::Playlistcontent",
+  "Emitria::Schema::Result::Playlist::Content",
   { "foreign.block_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

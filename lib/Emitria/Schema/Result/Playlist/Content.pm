@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::Playlistcontent;
+package Emitria::Schema::Result::Playlist::Content;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::Playlistcontent
+Emitria::Schema::Result::Playlist::Content
 
 =cut
 

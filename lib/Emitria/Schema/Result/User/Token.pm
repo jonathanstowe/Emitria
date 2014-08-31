@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::PlayoutHistoryTemplateField;
+package Emitria::Schema::Result::User::Token;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::PlayoutHistoryTemplateField
+Emitria::Schema::Result::User::Token
 
 =cut
 
@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<playout_history_template_field>
+=head2 TABLE: C<user_token>
 
 =cut
 
-__PACKAGE__->table("playout_history_template_field");
+__PACKAGE__->table("user_token");
 
 =head2 METHODS
 
@@ -39,39 +39,27 @@ __PACKAGE__->table("playout_history_template_field");
   is_auto_increment: 1
   is_nullable: 0
 
-=item template_id
+=item user_id
 
   data_type: 'integer'
   is_foreign_key: 1
   is_nullable: 0
 
-=item name
+=item action
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 128
+  size: 255
 
-=item label
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 128
-
-=item type
+=item token
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 128
+  size: 40
 
-=item is_file_md
+=item created
 
-  data_type: 'boolean'
-  default_value: false
-  is_nullable: 0
-
-=item position
-
-  data_type: 'integer'
+  data_type: 'timestamp'
   is_nullable: 0
 
 =cut
@@ -82,33 +70,23 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
-   template_id => {
+   user_id => {
       data_type      => "integer",
       is_foreign_key => 1,
       is_nullable    => 0
    },
-   name => {
+   action => {
       data_type   => "varchar",
       is_nullable => 0,
-      size        => 128
+      size        => 255
    },
-   label => {
+   token => {
       data_type   => "varchar",
       is_nullable => 0,
-      size        => 128
+      size        => 40
    },
-   type => {
-      data_type   => "varchar",
-      is_nullable => 0,
-      size        => 128
-   },
-   is_file_md => {
-      data_type     => "boolean",
-      default_value => \"false",
-      is_nullable   => 0
-   },
-   position => {
-      data_type   => "integer",
+   created => {
+      data_type   => "timestamp",
       is_nullable => 0
    },
 );
@@ -127,23 +105,43 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+
+=head2 UNIQUE CONSTRAINTS
+
+=over 4
+
+
+=item C<user_token_idx>
+
+=over 4
+
+=item * L</token>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("user_token_idx", ["token"]);
+
+=back
+
 =head2 RELATIONS
 
 =over 4
 
 
-=item template
+=item user
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::PlayoutHistoryTemplate>
+Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
 __PACKAGE__->belongs_to(
-  template =>
-  "Emitria::Schema::Result::PlayoutHistoryTemplate",
-  { id => "template_id" },
+  user =>
+  "Emitria::Schema::Result::User",
+  { id => "user_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 

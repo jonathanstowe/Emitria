@@ -136,13 +136,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::Playlistcontent>
+Related object: L<Emitria::Schema::Result::Playlist::Content>
 
 =cut
 
 __PACKAGE__->has_many(
   playlistcontents =>
-  "Emitria::Schema::Result::Playlistcontent",
+  "Emitria::Schema::Result::Playlist::Content",
   { "foreign.playlist_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

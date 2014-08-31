@@ -248,13 +248,13 @@ __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowDay>
+Related object: L<Emitria::Schema::Result::Show::Day>
 
 =cut
 
 __PACKAGE__->has_many(
   show_days =>
-  "Emitria::Schema::Result::ShowDay",
+  "Emitria::Schema::Result::Show::Day",
   { "foreign.show_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -263,13 +263,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowHost>
+Related object: L<Emitria::Schema::Result::Show::Host>
 
 =cut
 
 __PACKAGE__->has_many(
   show_hosts =>
-  "Emitria::Schema::Result::ShowHost",
+  "Emitria::Schema::Result::Show::Host",
   { "foreign.show_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -278,13 +278,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowInstance>
+Related object: L<Emitria::Schema::Result::Show::Instance>
 
 =cut
 
 __PACKAGE__->has_many(
   show_instances =>
-  "Emitria::Schema::Result::ShowInstance",
+  "Emitria::Schema::Result::Show::Instance",
   { "foreign.show_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
@@ -293,13 +293,13 @@ __PACKAGE__->has_many(
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::ShowRebroadcast>
+Related object: L<Emitria::Schema::Result::Show::Rebroadcast>
 
 =cut
 
 __PACKAGE__->has_many(
   show_rebroadcasts =>
-  "Emitria::Schema::Result::ShowRebroadcast",
+  "Emitria::Schema::Result::Show::Rebroadcast",
   { "foreign.show_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );

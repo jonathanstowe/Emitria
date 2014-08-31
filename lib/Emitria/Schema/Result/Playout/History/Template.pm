@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::PlayoutHistoryTemplate;
+package Emitria::Schema::Result::Playout::History::Template;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::PlayoutHistoryTemplate
+Emitria::Schema::Result::Playout::History::Template
 
 =cut
 
@@ -94,13 +94,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Emitria::Schema::Result::PlayoutHistoryTemplateField>
+Related object: L<Emitria::Schema::Result::Playout::History::Template::Field>
 
 =cut
 
 __PACKAGE__->has_many(
   playout_history_template_fields =>
-  "Emitria::Schema::Result::PlayoutHistoryTemplateField",
+  "Emitria::Schema::Result::Playout::History::Template::Field",
   { "foreign.template_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
