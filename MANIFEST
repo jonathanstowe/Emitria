@@ -6,7 +6,6 @@ bin/emitria_web_fastcgi.pl
 bin/emitria_web_server.pl
 bin/emitria_web_test.pl
 Build.PL
-ff
 lib/Emitria.pm
 lib/Emitria/Config.pm
 lib/Emitria/Schema.pm
