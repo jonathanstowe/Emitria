@@ -18,6 +18,7 @@ lib/Emitria/Schema/Result/Country.pm
 lib/Emitria/Schema/Result/File.pm
 lib/Emitria/Schema/Result/File/Metadata.pm
 lib/Emitria/Schema/Result/File/Metadata/Type.pm
+lib/Emitria/Schema/Result/File/Tag.pm
 lib/Emitria/Schema/Result/ListenerCount.pm
 lib/Emitria/Schema/Result/LiveLog.pm
 lib/Emitria/Schema/Result/Locale.pm
@@ -42,9 +43,11 @@ lib/Emitria/Schema/Result/Show/Day.pm
 lib/Emitria/Schema/Result/Show/Host.pm
 lib/Emitria/Schema/Result/Show/Instance.pm
 lib/Emitria/Schema/Result/Show/Rebroadcast.pm
+lib/Emitria/Schema/Result/Show/Tag.pm
 lib/Emitria/Schema/Result/Smemb.pm
 lib/Emitria/Schema/Result/Station.pm
 lib/Emitria/Schema/Result/StreamSetting.pm
+lib/Emitria/Schema/Result/Tag.pm
 lib/Emitria/Schema/Result/Timestamp.pm
 lib/Emitria/Schema/Result/User.pm
 lib/Emitria/Schema/Result/User/Contact.pm

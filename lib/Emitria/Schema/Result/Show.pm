@@ -1,4 +1,5 @@
 use utf8;
+
 package Emitria::Schema::Result::Show;
 
 
@@ -12,9 +13,10 @@ use strict;
 use warnings;
 
 use Moose;
+extends 'DBIx::Class::Core';
+
 use MooseX::NonMoose;
 use MooseX::MarkAsMethods autoclean => 1;
-extends 'DBIx::Class::Core';
 
 
 __PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
@@ -303,6 +305,22 @@ __PACKAGE__->has_many(
   { "foreign.show_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
+=item tag_references
+
+A relation to the L<Emitria::Schema::Result::Show::Tag>s
+
+=cut
+
+__PACKAGE__->has_many(tag_references   => 'Emitria::Schema::Result::Show::Tag', 'show_id', { cascade_copy => 0, cascade_delete => 0 });
+
+=item tags
+
+The relation to the actual tags.
+
+=cut
+
+__PACKAGE__->many_to_many(tags => 'tag_references', 'tag');
 
 =back
 

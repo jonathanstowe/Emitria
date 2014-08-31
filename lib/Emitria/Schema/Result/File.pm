@@ -408,6 +408,23 @@ This is a relation to the L<Emitra::Schema::Result::File::Metadata>s for this fi
 
 __PACKAGE__->has_many(metadata   => 'Emitria::Schema::Result::File::Metadata', 'file_id');
 
+=item tag_references
+
+A relation to the L<Emitria::Schema::Result::File::Tag>s
+
+=cut
+
+__PACKAGE__->has_many(tag_references   => 'Emitria::Schema::Result::File::Tag', 'file_id', { cascade_copy => 0, cascade_delete => 0 });
+
+=item tags
+
+The relation to the actual tags.
+
+=cut
+
+__PACKAGE__->many_to_many(tags => 'tag_references', 'tag');
+
+
 =item blockcontents
 
 Type: has_many
