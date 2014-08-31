@@ -1,4 +1,5 @@
 use utf8;
+
 package Emitria::Schema::Result::User::Token;
 
 
@@ -12,16 +13,18 @@ use strict;
 use warnings;
 
 use Moose;
-use MooseX::NonMoose;
-use MooseX::MarkAsMethods autoclean => 1;
 extends 'DBIx::Class::Core';
 
+use MooseX::NonMoose;
+use MooseX::MarkAsMethods autoclean => 1;
 
-__PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
+
+__PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
 
 =head1 DESCRIPTION
 
-L<DBIx::Class::ResultSource>
+A L<DBIx::Class::ResultSource> that stores an authentication token that may be used for authentication. The token is available
+for a specific "action" such as "api".
 
 =head2 TABLE: C<user_token>
 
@@ -35,11 +38,15 @@ __PACKAGE__->table("user_token");
 
 =item id
 
+Primary key.
+
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
 
 =item user_id
+
+A foreign key to the L<Emitria::Schema::Result::User> this is for.
 
   data_type: 'integer'
   is_foreign_key: 1
@@ -47,11 +54,15 @@ __PACKAGE__->table("user_token");
 
 =item action
 
+The action.
+
   data_type: 'varchar'
   is_nullable: 0
   size: 255
 
 =item token
+
+The actual token,  this should be generated in some relatively cryptographic manner.
 
   data_type: 'varchar'
   is_nullable: 0
@@ -85,10 +96,17 @@ __PACKAGE__->add_columns(
       is_nullable => 0,
       size        => 40
    },
-   created => {
-      data_type   => "timestamp",
-      is_nullable => 0
+   date_created => {
+      data_type     => 'datetime',
+      set_on_create => 1,
+      is_nullable   => 0,
    },
+   last_modified => {
+      data_type     => 'datetime',
+      set_on_update => 1,
+      set_on_create => 0,
+      is_nullable   => 1,
+   }
 );
 
 =back
@@ -121,7 +139,22 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("user_token_idx", ["token"]);
+__PACKAGE__->add_unique_constraint("user_token_token_idx", ["token"]);
+
+=item C<unq_token_user_action>
+
+=over 4
+
+=item * L</user_id>
+
+=item * L</action>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("unq_token_user_action", [qw(user_id action)]);
+
 
 =back
 
@@ -138,14 +171,7 @@ Related object: L<Emitria::Schema::Result::User>
 
 =cut
 
-__PACKAGE__->belongs_to(
-  user =>
-  "Emitria::Schema::Result::User",
-  { id => "user_id" },
-  { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
-);
-
-
+__PACKAGE__->belongs_to( user => "Emitria::Schema::Result::User", "user_id" , { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 
 __PACKAGE__->meta()->make_immutable();

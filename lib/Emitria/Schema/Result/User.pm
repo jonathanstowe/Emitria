@@ -1,4 +1,5 @@
 use utf8;
+
 package Emitria::Schema::Result::User;
 
 
@@ -12,9 +13,10 @@ use strict;
 use warnings;
 
 use Moose;
+extends 'DBIx::Class::Core';
+
 use MooseX::NonMoose;
 use MooseX::MarkAsMethods autoclean => 1;
-extends 'DBIx::Class::Core';
 
 
 __PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto PassphraseColumn));
@@ -134,26 +136,26 @@ __PACKAGE__->add_columns(
       is_nullable       => 0,
    },
    station_id => {
-      data_type   => "integer",
+      data_type      => "integer",
       is_foreign_key => 1,
-      is_nullable => 0,
+      is_nullable    => 0,
    },
    username => {
-      data_type     => "varchar",
-      is_nullable   => 0,
-      size          => 255
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 255
    },
    password => {
-        data_type    => 'varchar',
-        size         => 255,
-        passphrase       => 'rfc2307',
-        passphrase_class => 'SaltedDigest',
-        passphrase_args  => {
-            algorithm   => 'SHA-1',
-            salt_random => 20.
-        },
-        passphrase_check_method => 'check_password',
-    },
+      data_type        => 'varchar',
+      size             => 255,
+      passphrase       => 'rfc2307',
+      passphrase_class => 'SaltedDigest',
+      passphrase_args  => {
+         algorithm   => 'SHA-1',
+         salt_random => 20.
+      },
+      passphrase_check_method => 'check_password',
+   },
    first_name => {
       data_type     => "varchar",
       default_value => "",
@@ -457,18 +459,16 @@ __PACKAGE__->has_many(
 
 =item user_tokens
 
+This is a relation to L<Emitria::Schema::Result::User::Token>.  There is one for each 
+potential action.  They will be used to authenticate someusers.
+
 Type: has_many
 
 Related object: L<Emitria::Schema::Result::UsersToken>
 
 =cut
 
-__PACKAGE__->has_many(
-  user_tokens =>
-  "Emitria::Schema::Result::User::Token",
-  { "foreign.user_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
+__PACKAGE__->has_many( user_tokens => "Emitria::Schema::Result::User::Token", 'user_id',,{cascade_copy => 0, cascade_delete => 0 });
 
 =back
 
