@@ -35,6 +35,7 @@ my $builder = Module::Build->new(
       'Config::Tiny'                      => '2.14',
       'MooseX::MarkAsMethods'             => '0.15',
       'MooseX::NonMoose'                  => '0.26',
+      'Try::Tiny'                         => '0.22',
    },
    share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
