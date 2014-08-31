@@ -12,8 +12,6 @@ lib/Emitria/Schema.pm
 lib/Emitria/Schema/Result/Block.pm
 lib/Emitria/Schema/Result/Block/Content.pm
 lib/Emitria/Schema/Result/Block/Criteria.pm
-lib/Emitria/Schema/Result/Block::Content.pm
-lib/Emitria/Schema/Result/Block::Criteria.pm
 lib/Emitria/Schema/Result/Contact.pm
 lib/Emitria/Schema/Result/Contact/Type.pm
 lib/Emitria/Schema/Result/Country.pm
@@ -27,15 +25,10 @@ lib/Emitria/Schema/Result/MusicDir.pm
 lib/Emitria/Schema/Result/Permission.pm
 lib/Emitria/Schema/Result/Playlist.pm
 lib/Emitria/Schema/Result/Playlist/Content.pm
-lib/Emitria/Schema/Result/Playlist::Content.pm
 lib/Emitria/Schema/Result/Playout/History.pm
 lib/Emitria/Schema/Result/Playout/History/Metadata.pm
 lib/Emitria/Schema/Result/Playout/History/Template.pm
 lib/Emitria/Schema/Result/Playout/History/Template/Field.pm
-lib/Emitria/Schema/Result/Playout::History.pm
-lib/Emitria/Schema/Result/Playout::History::Metadata.pm
-lib/Emitria/Schema/Result/Playout::History::Template.pm
-lib/Emitria/Schema/Result/Playout::History::Template::Field.pm
 lib/Emitria/Schema/Result/Preference.pm
 lib/Emitria/Schema/Result/Role.pm
 lib/Emitria/Schema/Result/Role/Permission.pm
@@ -47,10 +40,6 @@ lib/Emitria/Schema/Result/Show/Day.pm
 lib/Emitria/Schema/Result/Show/Host.pm
 lib/Emitria/Schema/Result/Show/Instance.pm
 lib/Emitria/Schema/Result/Show/Rebroadcast.pm
-lib/Emitria/Schema/Result/Show::Day.pm
-lib/Emitria/Schema/Result/Show::Host.pm
-lib/Emitria/Schema/Result/Show::Instance.pm
-lib/Emitria/Schema/Result/Show::Rebroadcast.pm
 lib/Emitria/Schema/Result/Smemb.pm
 lib/Emitria/Schema/Result/Station.pm
 lib/Emitria/Schema/Result/StreamSetting.pm
@@ -59,10 +48,8 @@ lib/Emitria/Schema/Result/User.pm
 lib/Emitria/Schema/Result/User/Contact.pm
 lib/Emitria/Schema/Result/User/Role.pm
 lib/Emitria/Schema/Result/User/Token.pm
-lib/Emitria/Schema/Result/User::Token.pm
 lib/Emitria/Schema/Result/Webstream.pm
 lib/Emitria/Schema/Result/Webstream/Metadata.pm
-lib/Emitria/Schema/Result/Webstream::Metadata.pm
 lib/Emitria/Web.pm
 lib/Emitria/Web/Controller/Api.pm
 lib/Emitria/Web/Controller/Login.pm

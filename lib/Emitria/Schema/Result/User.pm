@@ -174,26 +174,6 @@ __PACKAGE__->add_columns(
       data_type   => "timestamp",
       is_nullable => 1
    },
-   skype_contact => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 255
-   },
-   jabber_contact => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 255
-   },
-   email => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 255
-   },
-   cell_phone => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 255
-   },
    login_attempts => {
       data_type     => "integer",
       default_value => 0,
@@ -262,6 +242,22 @@ Related object: L<Emitria::Schema::Result::Station>
 =cut
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
+=item user_contacts
+
+This is a relation to the L<Emitria::Schema::Result::User::Contact> only used as an intermediary.
+
+=cut
+
+__PACKAGE__->has_many(user_contacts => 'Emitria::Schema::Result::User::Contact', 'user_id',{ cascade_copy => 0, cascade_delete => 1 });
+
+=item contacts
+
+This is the relation to the L<Emitria::Schema::Result::Contact> that belong to this user.
+
+=cut
+
+__PACKAGE__->many_to_many(contacts  => 'user_contacts', 'contact');
 
 =item user_roles
 
