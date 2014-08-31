@@ -1,8 +1,11 @@
 package Emitria::Web::Controller::Login;
-use Moose;
-use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller'; }
+use Moose;
+extends 'Catalyst::Controller';
+
+use MooseX::MethodAttributes;
+
+use namespace::autoclean;
 
 =head1 NAME
 

@@ -1,9 +1,11 @@
 package Emitria::Web::Controller::My::Detail;
 
 use Moose;
-use namespace::autoclean;
+extends 'Catalyst::Controller';
 
-BEGIN { extends 'Catalyst::Controller'; }
+use MooseX::MethodAttributes;
+
+use namespace::autoclean;
 
 =head1 NAME
 
