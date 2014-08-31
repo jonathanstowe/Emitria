@@ -2,6 +2,9 @@ package Emitria::Web::Controller::Root;
 
 use Moose;
 extends 'Catalyst::Controller';
+with qw(
+         Emitria::Web::Role::WebDefaults
+       );
 
 use MooseX::MethodAttributes;
 
@@ -25,38 +28,14 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
+sub index :Path :Args(0) 
+{
     my ( $self, $c ) = @_;
 
     $c->stash->{current_view} = 'HTML';
     $c->stash(template => 'root.tt');    
 }
 
-=head2 auto
- 
-Check if there is a user and, if not, forward to login page
- 
-=cut
-
-sub auto : Private
-{
-   my ( $self, $c ) = @_;
-
-   $c->stash->{current_view} = 'HTML';
-   my $rc = 1;
-   if ( $c->controller() ne $c->controller('Login') )
-   {
-
-      if ( !$c->user_exists )
-      {
-         $c->log->debug('***Root::auto User not found, forwarding to /login');
-         $c->response->redirect( $c->uri_for('/login') );
-         $rc = 0;
-      }
-   }
-
-   return $rc;
-}
 
 =head2 default
 
@@ -64,19 +43,12 @@ Standard 404 error page
 
 =cut
 
-sub default :Path {
+sub default :Path 
+{
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);
 }
-
-=head2 end
-
-Attempt to render a view, if needed.
-
-=cut
-
-sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 

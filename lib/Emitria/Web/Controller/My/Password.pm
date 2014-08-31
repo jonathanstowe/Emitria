@@ -2,6 +2,9 @@ package Emitria::Web::Controller::My::Password;
 
 use Moose;
 extends 'Catalyst::Controller';
+with qw(
+         Emitria::Web::Role::WebDefaults
+       );
 
 use MooseX::MethodAttributes;
 

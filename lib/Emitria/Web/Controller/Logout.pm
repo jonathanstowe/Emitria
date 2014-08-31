@@ -2,6 +2,9 @@ package Emitria::Web::Controller::Logout;
 
 use Moose;
 extends 'Catalyst::Controller';
+with qw(
+         Emitria::Web::Role::WebRender
+       );
 
 use MooseX::MethodAttributes;
 
