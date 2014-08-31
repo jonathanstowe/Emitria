@@ -49,11 +49,29 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   data_type: 'integer'
   is_nullable: 0
 
+=item file_type_id
+
+This is a foreign key to L<Emitria::Schema::Result::File::Type> which gives a broad
+classification of the purpose of the file (ie "precorded show", "recorded show" etc )
+
+  data_type: 'integer',
+  is_nullable: 0,
+  is_foreign_key: 1
+
 =item name
 
   data_type: 'varchar'
   default_value: (empty string)
   is_nullable: 0
+  size: 255
+
+=item original_name
+
+Where the file has been renamed by the system from how it was introduced, this will
+be the name it was originally known. It may be null if it was a recording.
+
+  data_type: 'varchar'
+  is_nullable: 1
   size: 255
 
 =item mime
@@ -62,13 +80,6 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   default_value: (empty string)
   is_nullable: 0
   size: 255
-
-=item ftype
-
-  data_type: 'varchar'
-  default_value: (empty string)
-  is_nullable: 0
-  size: 128
 
 =item directory
 
@@ -223,10 +234,20 @@ __PACKAGE__->add_columns(
       is_foreign_key => 1,
       is_nullable => 0,
    },
+   file_type_id => {
+      data_type   => "integer",
+      is_foreign_key => 1,
+      is_nullable => 0,
+   },
    name => {
       data_type     => "varchar",
       default_value => "",
       is_nullable   => 0,
+      size          => 255
+   },
+   original_name => {
+      data_type     => "varchar",
+      is_nullable   => 1,
       size          => 255
    },
    mime => {
@@ -234,12 +255,6 @@ __PACKAGE__->add_columns(
       default_value => "",
       is_nullable   => 0,
       size          => 255
-   },
-   ftype => {
-      data_type     => "varchar",
-      default_value => "",
-      is_nullable   => 0,
-      size          => 128
    },
    directory => {
       data_type      => "integer",
@@ -399,6 +414,13 @@ Related object: L<Emitria::Schema::Result::Station>
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
+=item file_type
+
+This is the L<Emitra::Schema::Result::File::Type> which is the purpose of the file.
+
+=cut
+
+__PACKAGE__->belongs_to(file_type  => 'Emitria::Schema::Result::File::Type', 'file_type_id' );
 
 =item metadata
 
