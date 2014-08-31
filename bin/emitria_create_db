@@ -43,3 +43,33 @@ foreach my $perm_name ( @permissions )
 }
 
 $user->add_to_roles($role);
+
+my @contact_types = (
+   { name => 'skype', display_name => 'Skype', },
+   { name => 'jabber', display_name   => 'Jabber', },
+   { name => 'email', display_name => 'E-Mail', required   => 1, },
+   { name => 'mobile_phone', display_name => 'Mobile Phone', },
+   { name => 'twitter', display_name  => 'Twitter', },
+   { name => 'facebook', display_name => 'Facebook', },
+);
+
+my $cts = $e->resultset('Contact::Type');
+
+foreach my $ct ( @contact_types )
+{
+    $cts->create($ct);
+}
+
+my @file_types = (
+   { name => 'recording', display_name => 'Recorded Live Show', public => 1 },
+   { name => 'prerecorded', display_name => 'Pre-Recorded Show',  public => 1},
+   { name => 'ident', display_name => 'Station Ident', public => 0 },
+   { name => 'bedding', display_name => 'Bedding Music', public => 0 },
+);
+
+my $fts = $e->resultset('File::Type');
+
+foreach my $ft ( @file_types )
+{
+    $fts->create($ft);
+}
