@@ -1,4 +1,5 @@
 use utf8;
+
 package Emitria::Schema::Result::File;
 
 
@@ -12,9 +13,10 @@ use strict;
 use warnings;
 
 use Moose;
+extends 'DBIx::Class::Core';
+
 use MooseX::NonMoose;
 use MooseX::MarkAsMethods autoclean => 1;
-extends 'DBIx::Class::Core';
 
 
 __PACKAGE__->load_components(qw(TimeStamp InflateColumn::DateTime PK::Auto));
@@ -120,18 +122,6 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   is_nullable: 1
   size: 32
 
-=item track_title
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item artist_name
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
 =item bit_rate
 
   data_type: 'integer'
@@ -154,91 +144,10 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   default_value: '00:00:00'
   is_nullable: 1
 
-=item album_title
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item genre
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 64
-
-=item comments
-
-  data_type: 'text'
-  is_nullable: 1
-
-=item year
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 16
-
-=item track_number
-
-  data_type: 'integer'
-  is_nullable: 1
-
 =item channels
 
   data_type: 'integer'
   is_nullable: 1
-
-=item url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 1024
-
-=item bpm
-
-  data_type: 'integer'
-  is_nullable: 1
-
-=item rating
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 8
-
-=item encoded_by
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 255
-
-=item disc_number
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 8
-
-=item mood
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 64
-
-=item label
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item composer
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item encoder
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 64
 
 =item checksum
 
@@ -246,130 +155,6 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   is_nullable: 1
   size: 256
 
-=item lyrics
-
-  data_type: 'text'
-  is_nullable: 1
-
-=item orchestra
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item conductor
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item lyricist
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item original_lyricist
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item radio_station_name
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item info_url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item artist_url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item audio_source_url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item radio_station_url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item buy_this_url
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item isrc_number
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item catalog_number
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item original_artist
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item copyright
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item report_datetime
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 32
-
-=item report_location
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item report_organization
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item userect
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item contributor
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item language
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
 
 =item file_exists
 
@@ -377,32 +162,6 @@ A foreign key to the L<Emitria::Schema::Result::Station> that this file is for.
   default_value: true
   is_nullable: 1
 
-=item soundcloud_id
-
-  data_type: 'integer'
-  is_nullable: 1
-
-=item soundcloud_error_code
-
-  data_type: 'integer'
-  is_nullable: 1
-
-=item soundcloud_error_msg
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 512
-
-=item soundcloud_link_to_file
-
-  data_type: 'varchar'
-  is_nullable: 1
-  size: 4096
-
-=item soundcloud_upload_time
-
-  data_type: 'timestamp'
-  is_nullable: 1
 
 =item replay_gain
 
@@ -525,16 +284,6 @@ __PACKAGE__->add_columns(
       is_nullable => 1,
       size        => 32
    },
-   track_title => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   artist_name => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
    bit_rate => {
       data_type   => "integer",
       is_nullable => 1
@@ -553,212 +302,19 @@ __PACKAGE__->add_columns(
       default_value => "00:00:00",
       is_nullable   => 1
    },
-   album_title => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   genre => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 64
-   },
-   comments => {
-      data_type   => "text",
-      is_nullable => 1
-   },
-   year => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 16
-   },
-   track_number => {
-      data_type   => "integer",
-      is_nullable => 1
-   },
    channels => {
       data_type   => "integer",
       is_nullable => 1
-   },
-   url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 1024
-   },
-   bpm => {
-      data_type   => "integer",
-      is_nullable => 1
-   },
-   rating => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 8
-   },
-   encoded_by => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 255
-   },
-   disc_number => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 8
-   },
-   mood => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 64
-   },
-   label => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   composer => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   encoder => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 64
    },
    checksum => {
       data_type   => "varchar",
       is_nullable => 1,
       size        => 256
    },
-   lyrics => {
-      data_type   => "text",
-      is_nullable => 1
-   },
-   orchestra => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   conductor => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   lyricist => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   original_lyricist => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   radio_station_name => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   info_url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   artist_url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   audio_source_url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   radio_station_url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   buy_this_url => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   isrc_number => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   catalog_number => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   original_artist => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   copyright => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   report_datetime => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 32
-   },
-   report_location => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   report_organization => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   userect => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   contributor => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   language => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
    file_exists => {
       data_type     => "boolean",
       default_value => \"true",
       is_nullable   => 1
-   },
-   soundcloud_id => {
-      data_type   => "integer",
-      is_nullable => 1
-   },
-   soundcloud_error_code => {
-      data_type   => "integer",
-      is_nullable => 1
-   },
-   soundcloud_error_msg => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 512
-   },
-   soundcloud_link_to_file => {
-      data_type   => "varchar",
-      is_nullable => 1,
-      size        => 4096
-   },
-   soundcloud_upload_time => {
-      data_type   => "timestamp",
-      is_nullable => 1
    },
    replay_gain => {
       data_type   => "numeric",
@@ -843,6 +399,14 @@ Related object: L<Emitria::Schema::Result::Station>
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
+
+=item metadata
+
+This is a relation to the L<Emitra::Schema::Result::File::Metadata>s for this file.
+
+=cut
+
+__PACKAGE__->has_many(metadata   => 'Emitria::Schema::Result::File::Metadata', 'file_id');
 
 =item blockcontents
 

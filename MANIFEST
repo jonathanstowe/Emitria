@@ -6,6 +6,7 @@ bin/emitria_web_fastcgi.pl
 bin/emitria_web_server.pl
 bin/emitria_web_test.pl
 Build.PL
+ff
 lib/Emitria.pm
 lib/Emitria/Config.pm
 lib/Emitria/Schema.pm
@@ -16,6 +17,8 @@ lib/Emitria/Schema/Result/Contact.pm
 lib/Emitria/Schema/Result/Contact/Type.pm
 lib/Emitria/Schema/Result/Country.pm
 lib/Emitria/Schema/Result/File.pm
+lib/Emitria/Schema/Result/File/Metadata.pm
+lib/Emitria/Schema/Result/File/Metadata/Type.pm
 lib/Emitria/Schema/Result/ListenerCount.pm
 lib/Emitria/Schema/Result/LiveLog.pm
 lib/Emitria/Schema/Result/Locale.pm
