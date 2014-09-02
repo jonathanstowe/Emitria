@@ -1,7 +1,7 @@
 def notify(m)
   command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --media-id=#{m['schedule_table_id']} &"
   log(command)
-  system(command)
+  #system(command)
 end
 
 def notify_queue(m)
@@ -18,7 +18,7 @@ def notify_stream(m)
   command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --webstream='#{json_str}' --media-id=#{!current_dyn_id} &"
   if !current_dyn_id != "-1" then
      log(command)
-     system(command)
+     #system(command)
   end
 
 end
@@ -42,7 +42,7 @@ def append_title(m) =
   end
 end
 
-def crossfade_airtime(s)
+def crossfade_emitria(s)
   #duration is automatically overwritten by metadata fields passed in
   #with audio
   s = fade.in(type="log", duration=0., s)
@@ -94,14 +94,14 @@ def output_to(output_type, type, bitrate, host, port, pass, mount_point, url, de
     def on_error(msg)
         connected := "false"
         command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --error='#{msg}' --stream-id=#{stream} --time=#{!time} &"
-        system(command)
+        #system(command)
         log(command)
         5.
     end
     def on_connect()
         connected := "true"
         command = "/usr/local/lib/airtime/pypo/bin/liquidsoap_scripts/notify.sh --connect --stream-id=#{stream} --time=#{!time} &"
-        system(command)
+        #system(command)
         log(command)
     end
 

@@ -1,9 +1,87 @@
-%include "/usr/local/etc/emitria/liquidsoap.cfg"
+set("log.file",false)
+log("started")
+set("server.telnet", true)
 
-set("log.file.path", log_file)
-set("server.telnet", false)
-set("server.socket", true);
-set("server.socket.path","/var/run/emitria-liquidsoap.sock");
+
+###########################################
+# Output settings                         #
+###########################################
+output_sound_device = false
+output_sound_device_type = "ALSA"
+
+s1_name = "icecast"
+s2_name = "icecast"
+s3_name = "icecast"
+
+s1_output = "icecast"
+s2_output = "icecast"
+s3_output = "icecast"
+
+s1_enable = true
+s2_enable = false
+s3_enable = false
+
+s1_type = "ogg"
+s2_type = "ogg"
+s3_type = "mp3"
+
+s1_bitrate = 128
+s2_bitrate = 128
+s3_bitrate = 160
+
+s1_channels = '2'
+s2_channels = '2'
+s3_channels = '2'
+###########################################
+# Logging settings                        #
+###########################################
+#log_level = 3
+
+###########################################
+# Icecast Stream settings                 #
+###########################################
+s1_host = "127.0.0.1"
+s2_host = "127.0.0.1"
+s3_host = "127.0.0.1"
+s1_port = 8000
+s2_port = 8000
+s3_port = 8000
+s1_user = ""
+s2_user = ""
+s3_user = ""
+s1_pass = "hackme"
+s2_pass = "hackme"
+s3_pass = "hackme"
+
+# Icecast mountpoint names
+s1_mount = "airtime_128.ogg"
+s2_mount = "airtime_128.ogg"
+s3_mount = "airtime_160.mp3"
+
+# Webstream metadata settings
+s1_url = "http://airtime.sourcefabric.org"
+s2_url = "http://airtime.sourcefabric.org"
+s3_url = "http://airtime.sourcefabric.org"
+s1_description = "Airtime Radio! stream1"
+s2_description = "Airtime Radio! stream2"
+s3_description = "Airtime Radio! stream3"
+s1_genre = "genre"
+s2_genre = "genre"
+s3_genre = "genre"
+
+# Audio stream metadata for vorbis/ogg is disabled by default
+# due to a number of client media players that disconnect
+# when the metadata changes to a new track. Some versions of
+# mplayer and VLC have this problem. Enable this option at your
+# own risk!
+icecast_vorbis_metadata = false
+
+off_air_meta = ''
+dj_live_stream_port = 0 
+dj_live_stream_mp = ''
+
+master_live_stream_port = 0
+ master_live_stream_mp = ''
 
 set("init.daemon.pidfile.path", "/var/run/emitria-liquidsoap.pid")
 
@@ -191,7 +269,7 @@ end
 
 def update_source_status(sourcename, status) =
     command = "/usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/notify.sh --source-name=#{sourcename} --source-status=#{status} &"
-    system(command)
+    #system(command)
     log(command)
 end
 
@@ -403,4 +481,4 @@ end
 
 command = "/usr/local/lib/emitria/pypo/bin/liquidsoap_scripts/notify.sh --liquidsoap-started &"
 log(command)
-system(command)
+#system(command)
