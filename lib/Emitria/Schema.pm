@@ -16,7 +16,9 @@ L<DBIx::Class::Schema> sub-class for L<Emitria> storage.
 
 =cut
 
-__PACKAGE__->load_namespaces();
+__PACKAGE__->load_namespaces(
+                              default_resultset_class => 'ResultSet',
+                            );
 
 
 

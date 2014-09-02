@@ -30,6 +30,7 @@ my $builder = Module::Build->new(
       'DBIx::Class'                       => '0.08206',
       'DBIx::Class::TimeStamp'            => '0.14',
       'DBIx::Class::PassphraseColumn'     => '0.02',
+      'DBIx::Class::Helpers'              => '2.023005',
       'Catalyst::Model::DBIC::Schema'     => '0.64',
       'Catalyst::Plugin::Authentication'  => '0.10022',
       'Config::Tiny'                      => '2.14',
