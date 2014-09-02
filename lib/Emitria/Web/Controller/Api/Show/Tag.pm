@@ -2,6 +2,10 @@ package Emitria::Web::Controller::Api::Show::Tag;
 
 use Moose;
 extends qw(Catalyst::Controller::REST);
+with qw(
+         Emitria::Web::Role::ApiAuth
+       );
+
 
 use MooseX::MethodAttributes;
 use namespace::autoclean;

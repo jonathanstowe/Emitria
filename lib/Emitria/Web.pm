@@ -39,6 +39,17 @@ __PACKAGE__->config(
             user_model      => 'DB::User',
             password_type   => 'self_check',
         },
+        api => {
+          credential => {
+              class  => 'NoPassword',
+          },
+          store   => {
+            class          => 'DBIx::Class',
+            user_model     => 'DB::User',
+            role_relation  =>  'roles',
+            role_field     =>  'name',
+          }
+        },
     },
     'View::HTML'  => {
         INCLUDE_PATH => $e->template_path(),
