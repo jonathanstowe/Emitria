@@ -19,6 +19,8 @@ Methods to get the shared directory.
 
 =head2 METHODS
 
+=over 4
+
 =item share_dir
 
 This returns the path to the shared data directory.
