@@ -16,7 +16,7 @@ my $builder = Module::Build->new(
       'Module::Build' => 0,
    },
    build_requires => {
-      'Test::More'      => 0,
+      'Test::Most'      => '0.31',
       'Test::Exception' => 0,
       'DBD::SQLite'     => 0,
    },
@@ -36,6 +36,7 @@ my $builder = Module::Build->new(
       'Config::Tiny'                      => '2.14',
       'MooseX::MarkAsMethods'             => '0.15',
       'MooseX::NonMoose'                  => '0.26',
+      'Log::Log4perl'                     => '1.44',
       'Try::Tiny'                         => '0.22',
    },
    share_dir   => [qw(share)],
