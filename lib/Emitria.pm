@@ -1,6 +1,5 @@
 package Emitria;
 
-use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
