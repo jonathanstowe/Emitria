@@ -4,6 +4,9 @@ use strict;
 use warnings;
 
 use Moose;
+with qw(
+         Emitria::Role::ShareDir
+       );
 
 use Config::Tiny;
 use File::Spec::Functions qw(catfile catdir rel2abs curdir);
@@ -151,37 +154,6 @@ sub _get_htdocs_dir
    return $htdocs;
 }
 
-=item share_dir
-
-This returns the path to the shared data directory.
-
-=cut
-
-has share_dir  => (
-                     is    => 'rw',
-                     isa   => 'Str',
-                     lazy  => 1,
-                     builder  => '_get_share_dir',
-                  );
-
-sub _get_share_dir
-{
-   my ($self) = @_;
-   my $share_dir = ".";
-   my $blib_share_dir = dir( curdir, 'blib', 'lib', 'auto', 'share', 'dist', 'Emitria' );
-
-   if ( -d $blib_share_dir )
-   {
-      $share_dir = $blib_share_dir->stringify();
-   }
-   elsif ( -d dist_dir('Emitria') )
-   {
-      $share_dir = dist_dir('Emitria');
-   }
-
-   return $share_dir;
-
-}
 
 =item config_object
 
