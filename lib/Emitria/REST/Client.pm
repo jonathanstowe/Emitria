@@ -5,12 +5,9 @@ use warnings;
 
 
 use Moose;
-
-
-use HTTP::Request;
-use LWP::UserAgent;
-use Time::HiRes qw(sleep time);
-use Sub::Install;
+with qw(
+         Emitria::Role::Logger
+       );
 
 
 =head1 NAME
@@ -55,6 +52,27 @@ has content_type  => (
                         default  => 'application/json',
                      );
 
+
+=item accept
+
+Set and get the value to be used in the Accept headers for each request.
+
+=cut
+
+has accept  => (
+                        is => 'rw',
+                        isa   => 'Str',
+                        lazy  => 1,
+                        builder  => '_get_accept',
+                     );
+
+sub _get_accept
+{
+    my ( $self ) = @_;
+
+    return $self->content_type();
+}
+
 =item base
 
 This will form the base of all URIs that are passed to the request
@@ -93,6 +111,7 @@ has default_headers  => (
                            is => 'rw',
                            isa   => 'HashRef',
                            default  => sub { {} },
+                           auto_deref  => 1,
                            lazy  => 1,
                         );
 
@@ -238,7 +257,7 @@ Execute a POST request
 =cut
 
 {
-   my @non_data_methods = qw(GET DELETE OPTIONS);
+   my @non_data_methods = qw(GET DELETE OPTIONS HEAD);
    foreach my $method (@non_data_methods)
    {
 
@@ -250,11 +269,11 @@ Execute a POST request
          return $req;
       };
 
-      my $sub_sub_wrapped = Class::MOP::Method->wrap($sub_sub_code,
-                                                     {
+      my $sub_sub_wrapped = Moose::Meta::Method->wrap($sub_sub_code,
+                                                     
                                                        name => $sub_sub,
-                                                       package => __PACKAGE__,
-                                                     });
+                                                       package_name => __PACKAGE__,
+                                                     );
       __PACKAGE__->meta()->add_method($sub_sub, $sub_sub_wrapped);
 
       my $sub_code = sub {
@@ -262,11 +281,11 @@ Execute a POST request
          return $self->ua()->request( $self->$sub_sub(@args) );
       };
 
-      my $sub_wrapped = Class::MOP::Method->wrap($sub_code,
-                                                     {
+      my $sub_wrapped = Moose::Meta::Method->wrap($sub_code,
+                                                     
                                                        name => $sub,
-                                                       package => __PACKAGE__,
-                                                     });
+                                                       package_name => __PACKAGE__,
+                                                     );
       __PACKAGE__->meta()->add_method($sub, $sub_wrapped);
    }
 
@@ -294,22 +313,22 @@ Execute a POST request
          return $req;
       };
 
-      my $sub_sub_wrapped = Class::MOP::Method->wrap($sub_sub_code,
-                                                     {
+      my $sub_sub_wrapped = Moose::Meta::Method->wrap($sub_sub_code,
+                                                     
                                                        name => $sub_sub,
-                                                       package => __PACKAGE__,
-                                                     });
+                                                       package_name => __PACKAGE__,
+                                                     );
       __PACKAGE__->meta()->add_method($sub_sub, $sub_sub_wrapped);
 
       my $sub_code = sub {
          my ( $self, @args ) = @_;
          return $self->ua()->request( $self->$sub_sub(@args) );
       };
-      my $sub_wrapped = Class::MOP::Method->wrap($sub_code,
-                                                     {
+      my $sub_wrapped = Moose::Meta::Method->wrap($sub_code,
+                                                     
                                                        name => $sub,
-                                                       package => __PACKAGE__,
-                                                     });
+                                                       package_name => __PACKAGE__,
+                                                     );
       __PACKAGE__->meta()->add_method($sub, $sub_wrapped);
    }
 }
@@ -333,6 +352,7 @@ sub _new_request
    }
 
    require URI;
+   require HTTP::Request;
 
    my $uri = URI->new($args{'url'});
 
