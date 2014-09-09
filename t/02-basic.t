@@ -44,9 +44,17 @@ is($user->roles()->count(),1, "user has one role");
 is($user->permissions()->count(),1, "user has one permissions");
 
 ok($user->can_do($permission->name()), "user can do the permission");
-ok(!$user->can('xest_permission'), "user cant do another permission");
+ok(!$user->can_do('xest_permission'), "user cant do another permission");
 
+ok(my $token = $user->new_token('api'), 'new_token');
 
+isnt(my $new_token = $user->new_token('api'), $token, "and we get a different one back again");
+
+ok(my $tokens = $db->resultset('User::Token'), 'get user takens');
+
+ok($token = $tokens->find({token => $new_token }), 'search for token');
+
+is($token->user()->id(), $user->id(), "and got one for the right user");
 
 END
 {

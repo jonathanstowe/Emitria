@@ -468,9 +468,35 @@ Related object: L<Emitria::Schema::Result::UsersToken>
 
 =cut
 
-__PACKAGE__->has_many( user_tokens => "Emitria::Schema::Result::User::Token", 'user_id',,{cascade_copy => 0, cascade_delete => 0 });
+__PACKAGE__->has_many( user_tokens => "Emitria::Schema::Result::User::Token", 'user_id',{cascade_copy => 0, cascade_delete => 0 });
+
+=item new_token
+
+This creates or changes the token for the given "action". returning the new token.
+
+=cut
+
+sub new_token
+{
+    my ( $self, $action ) = @_;
+
+    my $token;
+
+    if ( $action )
+    {
+      require Data::UUID;
+      require Digest::SHA1;
+      require DateTime;
+      $token = Digest::SHA1::sha1_hex(Data::UUID->new()->create_hex() . DateTime->now() . $$);
+
+      $self->update_or_create_related(user_tokens => { action => $action, token => $token }, { key => "unq_token_user_action"});
+    }
+
+    return $token;
+}
 
 =back
+
 
 =cut
 
