@@ -37,7 +37,7 @@ sub begin : Private
        {
            my $tokens = $c->model('DB::User::Token');
 
-           if (defined(my $t = $tokens->fimd({token => $token }) ))
+           if (defined(my $t = $tokens->find({token => $token }) ))
            {
                if(!$c->authenticate({ id   => $t->user()->id() }, 'api'))
                {

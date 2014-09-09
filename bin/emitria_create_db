@@ -73,3 +73,5 @@ foreach my $ft ( @file_types )
 {
     $fts->create($ft);
 }
+
+print $user->new_token('api'), "\n";
