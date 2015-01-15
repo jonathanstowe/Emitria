@@ -382,20 +382,6 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=item permissions
-
-Type: has_many
-
-Related object: L<Emitria::Schema::Result::Permission>
-
-=cut
-
-__PACKAGE__->has_many(
-  permissons =>
-  "Emitria::Schema::Result::Permission",
-  { "foreign.user" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
 
 =item playlists
 
