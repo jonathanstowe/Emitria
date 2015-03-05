@@ -32,7 +32,6 @@ sub begin : Private
 
    if ( !$c->user_exists )
    {
-       $c->log->debug('User not found, forwarding to /login');
        if ( my $token = $c->req->params->{api_token} )
        {
            my $tokens = $c->model('DB::User::Token');
