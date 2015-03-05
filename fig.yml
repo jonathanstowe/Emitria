@@ -1,0 +1,8 @@
+liquidsoap:
+        image: moul/liquidsoap
+        command: liquidsoap share/liquidsoap/emitria.liq
+        ports:
+         - 8080:8080
+        volumes:
+         - share:/share
+        user: nobody
