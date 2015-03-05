@@ -37,7 +37,8 @@ sub begin : Private
       if ( !$c->user_exists )
       {
          $c->log->debug('User not found, forwarding to /login');
-         $c->response->redirect( $c->uri_for('/login') );
+         $c->response()->redirect( $c->uri_for('/login') );
+	 $c->detach();
          $rc = 0;
       }
    }
