@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<show_instances>
+=head2 TABLE: C<show_instance>
 
 =cut
 
-__PACKAGE__->table("show_instances");
+__PACKAGE__->table("show_instance");
 
 =head2 METHODS
 

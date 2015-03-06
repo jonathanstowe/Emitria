@@ -27,7 +27,7 @@ L<DBIx::Class::ResultSource>
 
 =cut
 
-__PACKAGE__->table("blockcontents");
+__PACKAGE__->table("block_content");
 
 =head2 METHODS
 

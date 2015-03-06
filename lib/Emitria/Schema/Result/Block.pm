@@ -74,7 +74,7 @@ __PACKAGE__->table("block");
   default_value: '00:00:00'
   is_nullable: 1
 
-=item type
+=item block_type
 
   data_type: 'varchar'
   default_value: 'static'
@@ -118,7 +118,7 @@ __PACKAGE__->add_columns(
       default_value => "00:00:00",
       is_nullable   => 1
    },
-   type => {
+   block_type => {
       data_type     => "varchar",
       default_value => "static",
       is_nullable   => 1,

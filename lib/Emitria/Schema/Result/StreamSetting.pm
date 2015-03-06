@@ -45,7 +45,7 @@ __PACKAGE__->table("stream_setting");
   is_nullable: 1
   size: 255
 
-=item type
+=item setting_type
 
   data_type: 'varchar'
   is_nullable: 0
@@ -64,7 +64,7 @@ __PACKAGE__->add_columns(
       is_nullable => 1,
       size        => 255
    },
-   type => {
+   setting_type => {
       data_type   => "varchar",
       is_nullable => 0,
       size        => 16

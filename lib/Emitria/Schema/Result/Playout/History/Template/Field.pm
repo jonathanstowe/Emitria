@@ -97,7 +97,7 @@ __PACKAGE__->add_columns(
       is_nullable => 0,
       size        => 128
    },
-   type => {
+   field_type => {
       data_type   => "varchar",
       is_nullable => 0,
       size        => 128

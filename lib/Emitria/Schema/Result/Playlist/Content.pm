@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<playlistcontents>
+=head2 TABLE: C<playlist_content>
 
 =cut
 
-__PACKAGE__->table("playlistcontents");
+__PACKAGE__->table("playlist_content");
 
 =head2 METHODS
 
@@ -62,7 +62,7 @@ __PACKAGE__->table("playlistcontents");
   data_type: 'integer'
   is_nullable: 1
 
-=item type
+=item item_type
 
   data_type: 'smallint'
   default_value: 0
@@ -136,7 +136,7 @@ __PACKAGE__->add_columns(
       data_type   => "integer",
       is_nullable => 1
    },
-   type => {
+   item_type => {
       data_type     => "smallint",
       default_value => 0,
       is_nullable   => 0

@@ -27,7 +27,7 @@ L<DBIx::Class::ResultSource>
 
 =cut
 
-__PACKAGE__->table("music_dirs");
+__PACKAGE__->table("music_dir");
 
 =head2 METHODS
 
@@ -84,7 +84,7 @@ __PACKAGE__->add_columns(
       data_type   => "text",
       is_nullable => 1
    },
-   type => {
+   directory_type => {
       data_type   => "varchar",
       is_nullable => 1,
       size        => 255

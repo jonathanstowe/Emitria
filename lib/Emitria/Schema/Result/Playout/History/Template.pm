@@ -45,7 +45,7 @@ __PACKAGE__->table("playout_history_template");
   is_nullable: 0
   size: 128
 
-=item type
+=item template_type
 
   data_type: 'varchar'
   is_nullable: 0
@@ -64,7 +64,7 @@ __PACKAGE__->add_columns(
       is_nullable => 0,
       size        => 128
    },
-   type => {
+   template_type => {
       data_type   => "varchar",
       is_nullable => 0,
       size        => 35
