@@ -63,9 +63,19 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
-   state      => { data_type => "varchar",   is_nullable => 0, size => 32 },
-   start_time => { data_type => "timestamp", is_nullable => 0 },
-   end_time   => { data_type => "timestamp", is_nullable => 1 },
+   state      => { 
+      data_type   => "varchar",
+      is_nullable => 0,
+      size        => 32 
+   },
+   start_time => { 
+      data_type   => "timestamp", 
+      is_nullable => 0 
+   },
+   end_time   => { 
+      data_type   => "timestamp", 
+      is_nullable => 1 
+   },
 );
 
 =back
