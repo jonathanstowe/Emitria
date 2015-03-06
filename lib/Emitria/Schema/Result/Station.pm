@@ -129,6 +129,15 @@ A relation to the L<Emitria::Schema::Result::MusicDir>s for this station
 
 __PACKAGE__->has_many( music_dirs => "Emitria::Schema::Result::MusicDir",'station_id', { cascade_copy => 0, cascade_delete => 0 });
 
+=item playout_history_templates
+
+These are the L<Emitria::Schema::Result::Playout::History::Template>s for this station.
+
+=cut
+
+__PACKAGE__->has_many( playout_history_templates => "Emitria::Schema::Result::Playout::History::Template",'station_id', { cascade_copy => 0, cascade_delete => 1 });
+
+
 
 __PACKAGE__->meta()->make_immutable();
 

@@ -59,6 +59,11 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
+   station_id  => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 0,
+   },
    name => {
       data_type   => "varchar",
       is_nullable => 0,
@@ -89,6 +94,17 @@ __PACKAGE__->set_primary_key("id");
 
 =over 4
 
+=item station
+
+This is the radio station that the template belongs to.
+
+Type: belongs_to
+
+Related object: L<Emitria::Schema::Result::Station>
+
+=cut
+
+__PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 =item playout_history_template_fields
 
