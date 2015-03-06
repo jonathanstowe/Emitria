@@ -45,6 +45,7 @@ my $builder = Module::Build->new(
       'Catalyst::Authentication::Store::DBIx::Class'  => '0.1506',
       'Catalyst::View::TT'	                           => '0.42',
       'Data::UUID'                                    => '1.220',
+      'Throwable'                                     => '0.200012',
    },
    share_dir   => [qw(share)],
    create_makefile_pl => 'traditional',
