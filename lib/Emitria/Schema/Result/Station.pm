@@ -84,6 +84,14 @@ A relation to the L<Emitria::Schema::Result::Role>s for this station
 
 __PACKAGE__->has_many( roles => "Emitria::Schema::Result::Role",'station_id', { cascade_copy => 0, cascade_delete => 0 });
 
+=item streams
+
+A relation to the L<Emitria::Schema::Result::Stream> that belong to this station.
+
+=cut
+
+__PACKAGE__->has_many( streams => "Emitria::Schema::Result::Stream",'station_id', { cascade_copy => 0, cascade_delete => 1 });
+
 =item files
 
 A relation to the L<Emitria::Schema::Result::File>s for this station

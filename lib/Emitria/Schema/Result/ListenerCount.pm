@@ -103,13 +103,13 @@ __PACKAGE__->set_primary_key("id");
 
 Type: belongs_to
 
-Related object: L<Emitria::Schema::Result::MountName>
+Related object: L<Emitria::Schema::Result::Stream::MountName>
 
 =cut
 
 __PACKAGE__->belongs_to(
   mount_name =>
-  "Emitria::Schema::Result::MountName",
+  "Emitria::Schema::Result::Stream::MountName",
   { id => "mount_name_id" },
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );

@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::MountName;
+package Emitria::Schema::Result::Stream::MountName;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::MountName
+Emitria::Schema::Result::Stream::MountName
 
 =cut
 
@@ -23,11 +23,11 @@ __PACKAGE__->load_components(qw(InflateColumn::DateTime PK::Auto));
 
 L<DBIx::Class::ResultSource>
 
-=head2 TABLE: C<mount_name>
+=head2 TABLE: C<stream_mount_name>
 
 =cut
 
-__PACKAGE__->table("mount_name");
+__PACKAGE__->table("stream_mount_name");
 
 =head2 METHODS
 
@@ -38,6 +38,14 @@ __PACKAGE__->table("mount_name");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
+
+=cut
+
+=item stream_id
+
+Foreign key to the L<Emitria::Schema::Result::Stream> this belongs to.
+
+=cut
 
 =item mount_name
 
@@ -52,6 +60,11 @@ __PACKAGE__->add_columns(
       data_type         => "integer",
       is_auto_increment => 1,
       is_nullable       => 0,
+   },
+   stream_id   => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 0,
    },
    mount_name => {
       data_type   => "varchar",
@@ -78,6 +91,13 @@ __PACKAGE__->set_primary_key("id");
 
 =over 4
 
+=item stream
+
+The relation to the L<Emitria::Schema::Result::Stream> that this belongs to.
+
+=cut
+
+__PACKAGE__->belongs_to(stream   => 'Emitria::Schema::Result::Stream', 'stream_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 =item listener_counts
 
@@ -93,6 +113,7 @@ __PACKAGE__->has_many(
   { "foreign.mount_name_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
+
 
 
 

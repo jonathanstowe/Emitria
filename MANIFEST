@@ -24,7 +24,6 @@ lib/Emitria/Schema/Result/ListenerCount.pm
 lib/Emitria/Schema/Result/LiveLog.pm
 lib/Emitria/Schema/Result/Locale.pm
 lib/Emitria/Schema/Result/LoginAttempt.pm
-lib/Emitria/Schema/Result/MountName.pm
 lib/Emitria/Schema/Result/MusicDir.pm
 lib/Emitria/Schema/Result/Permission.pm
 lib/Emitria/Schema/Result/Playlist.pm
@@ -47,7 +46,9 @@ lib/Emitria/Schema/Result/Show/Rebroadcast.pm
 lib/Emitria/Schema/Result/Show/Tag.pm
 lib/Emitria/Schema/Result/Smemb.pm
 lib/Emitria/Schema/Result/Station.pm
-lib/Emitria/Schema/Result/StreamSetting.pm
+lib/Emitria/Schema/Result/Stream.pm
+lib/Emitria/Schema/Result/Stream/Setting.pm
+lib/Emitria/Schema/Result/Stream/MountName.pm
 lib/Emitria/Schema/Result/Tag.pm
 lib/Emitria/Schema/Result/Timestamp.pm
 lib/Emitria/Schema/Result/User.pm
@@ -56,6 +57,11 @@ lib/Emitria/Schema/Result/User/Role.pm
 lib/Emitria/Schema/Result/User/Token.pm
 lib/Emitria/Schema/Result/Webstream.pm
 lib/Emitria/Schema/Result/Webstream/Metadata.pm
+lib/Emitria/REST/Client.pm
+lib/Emitria/Role/Logger.pm
+lib/Emitria/Role/ShareDir.pm
+lib/Emitria/Schema/ResultSet.pm
+lib/Emitria/Web/Role/ApiAuth.pm
 lib/Emitria/Web.pm
 lib/Emitria/Web/Controller/Api.pm
 lib/Emitria/Web/Controller/Api/File.pm
@@ -80,6 +86,7 @@ LICENSE
 MANIFEST			This list of files
 README.md
 share/etc/emitria.conf
+share/etc/emitria_logger.conf
 share/htdocs/css/bootstrap-theme.min.css
 share/htdocs/css/bootstrap.min.css
 share/htdocs/css/style.css
@@ -139,3 +146,6 @@ t/pod-coverage.t
 t/pod.t
 t/view_Form.t
 t/view_HTML.t
+t/Emitria_REST_Client.t
+t/etc/emitria_logger.conf
+

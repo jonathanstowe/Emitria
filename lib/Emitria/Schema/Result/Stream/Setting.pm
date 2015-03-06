@@ -1,10 +1,10 @@
 use utf8;
-package Emitria::Schema::Result::StreamSetting;
+package Emitria::Schema::Result::Stream::Setting;
 
 
 =head1 NAME
 
-Emitria::Schema::Result::StreamSetting
+Emitria::Schema::Result::Stream::Setting
 
 =cut
 
@@ -54,6 +54,16 @@ __PACKAGE__->table("stream_setting");
 =cut
 
 __PACKAGE__->add_columns(
+   id => {
+      data_type         => "integer",
+      is_auto_increment => 1,
+      is_nullable       => 0,
+   },
+   stream_id   => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 0,
+   },
    keyname => {
       data_type   => "varchar",
       is_nullable => 0,
@@ -77,13 +87,31 @@ __PACKAGE__->add_columns(
 
 =over 4
 
-=item * L</keyname>
+=item * L</id>
 
 =back
 
 =cut
 
-__PACKAGE__->set_primary_key("keyname");
+__PACKAGE__->set_primary_key("id");
+
+__PACKAGE__->add_unique_constraint(unq_stream_setting => [qw(stream_id keyname)]);
+
+=head2 RELATIONS
+
+=over 4
+
+=item stream
+
+The relation to the L<Emitria::Schema::Result::Stream> that this belongs to.
+
+=cut
+
+__PACKAGE__->belongs_to(stream   => 'Emitria::Schema::Result::Stream', 'stream_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
+=back
+
+=cut
 
 
 
