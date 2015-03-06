@@ -71,3 +71,9 @@
 
 # Avoid archives of this distribution
 \bEmitria-[\d\.\_]+
+
+# local productions
+\bfig.yml$
+\bschema.sql$
+\bschema.png$
+\bRD_TRACE$
