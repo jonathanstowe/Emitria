@@ -66,12 +66,11 @@ Crypted password
   is_nullable: 0
   size: 255
 
-=item type
+=item locale_id
 
-  data_type: 'char'
-  default_value: 'U'
-  is_nullable: 0
-  size: 1
+Foreign key to the L<Emitria::Schema::Result::Locale> for this user.
+
+=cut
 
 =item first_name
 
@@ -139,6 +138,11 @@ __PACKAGE__->add_columns(
       data_type      => "integer",
       is_foreign_key => 1,
       is_nullable    => 0,
+   },
+   locale_id   => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 1,
    },
    username => {
       data_type   => "varchar",
@@ -244,6 +248,15 @@ Related object: L<Emitria::Schema::Result::Station>
 =cut
 
 __PACKAGE__->belongs_to(station  => 'Emitria::Schema::Result::Station', 'station_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
+=item locale
+
+Relation to the L<Emitria::Schema::Result::Locale> for this user.
+
+=cut
+
+__PACKAGE__->belongs_to(locale  => 'Emitria::Schema::Result::Locale', 'locale_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
+
 
 =item user_contacts
 

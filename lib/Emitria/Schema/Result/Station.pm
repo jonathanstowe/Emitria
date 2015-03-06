@@ -53,6 +53,11 @@ __PACKAGE__->add_columns(
       length      => 1024,
       is_nullable => 1,
    },
+   locale_id   => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 1,
+   },
    date_created => {
       data_type     => 'datetime',
       set_on_create => 1,
@@ -67,6 +72,14 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
+
+=item locale
+
+Relation to the L<Emitria::Schema::Result::Locale> for this user.
+
+=cut
+
+__PACKAGE__->belongs_to(locale  => 'Emitria::Schema::Result::Locale', 'locale_id', { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
 =item users
 
