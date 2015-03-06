@@ -196,6 +196,14 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=item live_log_entries
+
+This is the relation the L<Emitria::Schema::Result::LiveLog> entries for this show instance.
+
+=cut
+
+__PACKAGE__->has_many(live_log_entries => 'Emitria::Schema::Result::LiveLog', 'show_instance_id', { cascade_copy => 0, cascade_delete => 0 });
+
 =item schedules
 
 Type: has_many

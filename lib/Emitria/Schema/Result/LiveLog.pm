@@ -63,6 +63,11 @@ __PACKAGE__->add_columns(
       is_auto_increment => 1,
       is_nullable       => 0,
    },
+   show_instance_id  => {
+      data_type      => 'integer',
+      is_foreign_key => 1,
+      is_nullable    => 1,
+   },
    state      => { 
       data_type   => "varchar",
       is_nullable => 0,
@@ -85,6 +90,20 @@ __PACKAGE__->add_columns(
 =over 4
 
 =item * L</id>
+
+=back
+
+=head2 RELATIONS
+
+=over 4
+
+=item show_instance
+
+The L<Emitria::Schema::Result::Show::Instance>
+
+=cut
+
+__PACKAGE__->belongs_to(show_instance => 'Emitria::Schema::Result::Show::Instance', 'show_instance_id', { is_deferrable => 0, join_type     => "LEFT", on_delete     => "CASCADE", on_update     => "NO ACTION", });
 
 =back
 
