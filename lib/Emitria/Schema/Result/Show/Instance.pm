@@ -157,7 +157,7 @@ __PACKAGE__->add_columns(
    },
    modified_instance => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 0
    },
 );

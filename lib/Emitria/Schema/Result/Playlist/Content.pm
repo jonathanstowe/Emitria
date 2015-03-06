@@ -146,7 +146,7 @@ __PACKAGE__->add_columns(
       is_nullable => 1
    },
    trackoffset => {
-      data_type     => "double precision",
+      data_type     => "double",
       default_value => 0,
       is_nullable   => 0
    },

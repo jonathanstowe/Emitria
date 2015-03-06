@@ -328,7 +328,7 @@ __PACKAGE__->add_columns(
    },
    file_exists => {
       data_type     => "boolean",
-      default_value => \"true",
+      default_value => 1,
       is_nullable   => 1
    },
    replay_gain => {
@@ -352,22 +352,22 @@ __PACKAGE__->add_columns(
    },
    silan_check => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    hidden => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    is_scheduled => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    is_playlist => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    date_created => {

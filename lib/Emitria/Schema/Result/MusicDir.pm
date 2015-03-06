@@ -91,12 +91,12 @@ __PACKAGE__->add_columns(
    },
    dir_exists => {
       data_type     => "boolean",
-      default_value => \"true",
+      default_value => 1,
       is_nullable   => 1
    },
    watched => {
       data_type     => "boolean",
-      default_value => \"true",
+      default_value => 1,
       is_nullable   => 1
    },
 );

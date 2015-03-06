@@ -170,7 +170,7 @@ __PACKAGE__->add_columns(
    },
    media_item_played => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    instance_id => {

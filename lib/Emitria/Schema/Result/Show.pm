@@ -171,12 +171,12 @@ __PACKAGE__->add_columns(
    },
    live_stream_using_airtime_auth => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    live_stream_using_custom_auth => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 1
    },
    live_stream_user => {
@@ -191,12 +191,12 @@ __PACKAGE__->add_columns(
    },
    linked => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 0
    },
    is_linkable => {
       data_type     => "boolean",
-      default_value => \"true",
+      default_value => 1,
       is_nullable   => 0
    },
    date_created => {

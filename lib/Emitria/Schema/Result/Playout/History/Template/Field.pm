@@ -104,7 +104,7 @@ __PACKAGE__->add_columns(
    },
    is_file_md => {
       data_type     => "boolean",
-      default_value => \"false",
+      default_value => 0,
       is_nullable   => 0
    },
    position => {
