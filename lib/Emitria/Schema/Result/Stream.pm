@@ -49,6 +49,13 @@ Foreign key to L<Emitria::Schema::Result::Station>
 
 Boolean indicating whether this stream is enabled.  Default is true.
 
+=item default_stream
+
+Indicates whether this stream is to be used to stream a show by default.
+The default value is true.  If a show is to be streamed to a non-default
+stream (such as a syndication,) it will have to be associated with the
+show explicitly.
+
 =item date_created
 
 Auto populated when the row is created.
@@ -79,6 +86,11 @@ __PACKAGE__->add_columns(
       is_foreign_key    => 1,
    },
    enabled  => {
+      data_type         => 'boolean',
+      default_value     => 1,
+      is_nullable       => 0,
+   },
+   default_stream => {
       data_type         => 'boolean',
       default_value     => 1,
       is_nullable       => 0,
