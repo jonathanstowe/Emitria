@@ -23,7 +23,6 @@ lib/Emitria/Schema/Result/File/Type.pm
 lib/Emitria/Schema/Result/ListenerCount.pm
 lib/Emitria/Schema/Result/LiveLog.pm
 lib/Emitria/Schema/Result/Locale.pm
-lib/Emitria/Schema/Result/LoginAttempt.pm
 lib/Emitria/Schema/Result/MusicDir.pm
 lib/Emitria/Schema/Result/Permission.pm
 lib/Emitria/Schema/Result/Playlist.pm
@@ -36,7 +35,6 @@ lib/Emitria/Schema/Result/Preference.pm
 lib/Emitria/Schema/Result/Role.pm
 lib/Emitria/Schema/Result/Role/Permission.pm
 lib/Emitria/Schema/Result/Schedule.pm
-lib/Emitria/Schema/Result/ServiceRegister.pm
 lib/Emitria/Schema/Result/Session.pm
 lib/Emitria/Schema/Result/Show.pm
 lib/Emitria/Schema/Result/Show/Day.pm
@@ -44,7 +42,6 @@ lib/Emitria/Schema/Result/Show/Host.pm
 lib/Emitria/Schema/Result/Show/Instance.pm
 lib/Emitria/Schema/Result/Show/Rebroadcast.pm
 lib/Emitria/Schema/Result/Show/Tag.pm
-lib/Emitria/Schema/Result/Smemb.pm
 lib/Emitria/Schema/Result/Station.pm
 lib/Emitria/Schema/Result/Stream.pm
 lib/Emitria/Schema/Result/Stream/Setting.pm
