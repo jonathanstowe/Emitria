@@ -173,6 +173,10 @@ Related object: L<Emitria::Schema::Result::User>
 
 __PACKAGE__->belongs_to( user => "Emitria::Schema::Result::User", "user_id" , { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" });
 
+=back
+
+=cut
+
 
 __PACKAGE__->meta()->make_immutable();
 

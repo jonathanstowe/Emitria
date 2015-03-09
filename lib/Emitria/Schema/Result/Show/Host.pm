@@ -120,7 +120,9 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 0, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
+=back
 
+=cut
 
 
 __PACKAGE__->meta()->make_immutable();

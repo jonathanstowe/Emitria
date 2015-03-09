@@ -175,6 +175,9 @@ __PACKAGE__->has_many(
 );
 
 
+=back
+
+=cut
 
 
 __PACKAGE__->meta()->make_immutable();

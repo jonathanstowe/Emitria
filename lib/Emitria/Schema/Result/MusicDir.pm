@@ -167,7 +167,9 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=back
 
+=cut
 
 
 __PACKAGE__->meta()->make_immutable();

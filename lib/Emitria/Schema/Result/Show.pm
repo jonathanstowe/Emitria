@@ -231,9 +231,6 @@ __PACKAGE__->set_primary_key("id");
 =over 4
 
 
-=over 4
-
-
 =item station
 
 This is the radio station that the show belongs to.
