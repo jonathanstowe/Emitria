@@ -21,6 +21,7 @@ my $builder = Module::Build->new(
       'Test::Pod::Coverage'   => '1.10',
       'Devel::Cover'          => '1.03',
       'DBD::SQLite'           => 0,
+      'Test::LWP::UserAgent'  => '0.027',
    },
    requires => {
       perl                                            => 5.008,
