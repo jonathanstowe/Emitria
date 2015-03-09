@@ -25,7 +25,7 @@ can_ok($obj, 'logger_config');
 # not quite sure why this doesn't work at the moment
 #ok($obj->DOES('Emitria::Role::Logger'), "and it does the role");
 
-my $tmpname = "tmp$$";
+my $tmpname = dir("tmp$$");
 mkdir $tmpname or die "$!\n";
 chdir $tmpname;
 
@@ -62,6 +62,7 @@ lives_ok { $obj->share_dir('garbage/garbage') } "set share to something bogus";
 throws_ok { $config = $obj->logger_config() } qr/Validation failed for 'Str' with value undef/, "get logger_config in wrong directory for test no environment set and share_dir bogus should throw";
 
 chdir '..';
+$tmpname->rmtree();
 
 lives_ok { $obj = $meta_class->new_object() } "create a new object that consumes the role";
 
