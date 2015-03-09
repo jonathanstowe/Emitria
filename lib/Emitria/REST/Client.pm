@@ -380,6 +380,10 @@ sub _new_request
    {
      $req->protocol('HTTP/1.0');
    }
+   else
+   {
+      $req->protocol('HTTP/1.1');
+   }
 
    $req->header( $_ => $args{headers}{$_} ) for keys %{ $args{headers} };
    $req->header("Accept-Charset" => "utf-8");
