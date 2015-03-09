@@ -38,6 +38,17 @@ is($role->permissions()->count(), 1, "and the role has permissions");
 
 ok(my $user = $station->create_related(users => {username => 'test_user', password => 'foo'}), "create a user");
 
+is($user->display_name(), $user->username(), "default display_name");
+
+ok($user->last_name('Last'), "set last");
+lives_ok { $user->update() } "update that";
+is($user->display_name(), $user->last_name(), "and the display_name has that");
+
+ok($user->first_name('First'), "set first_name");
+lives_ok { $user->update() } "update that";
+is($user->display_name(), "First Last", "now fully populated");
+
+
 lives_ok { $user->add_to_roles($role) } "add role to user";
 
 is($user->roles()->count(),1, "user has one role");
@@ -46,6 +57,7 @@ is($user->permissions()->count(),1, "user has one permissions");
 ok($user->can_do($permission->name()), "user can do the permission");
 ok(!$user->can_do('xest_permission'), "user cant do another permission");
 
+lives_ok { $user->new_token() } "new_token() without action";
 ok(my $token = $user->new_token('api'), 'new_token');
 
 isnt(my $new_token = $user->new_token('api'), $token, "and we get a different one back again");
