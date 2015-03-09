@@ -78,13 +78,13 @@ sub _get_logger_config
 
     my $file;
 
-    my $test_config =  file(curdir, 't', 'etc', 'emitria_logger.conf')->resolve();
+    my $test_config =  file(curdir, 't', 'etc', 'emitria_logger.conf');
 
     if ( -f $test_config )
     {
         $file = $test_config->stringify();
     }
-    elsif ( -f $ENV{EMITRIA_LOGGER_CONFIG} )
+    elsif ( exists $ENV{EMITRIA_LOGGER_CONFIG} && -f $ENV{EMITRIA_LOGGER_CONFIG} )
     {
         $file = $ENV{EMITRIA_LOGGER_CONFIG};
     }
@@ -92,7 +92,7 @@ sub _get_logger_config
     {
         my $share_file = file($self->share_dir(), 'etc', 'emitria_logger.conf'); 
 
-        if ( -d $share_file )
+        if ( -f $share_file )
         {
             $file = $share_file->stringify();
         }
