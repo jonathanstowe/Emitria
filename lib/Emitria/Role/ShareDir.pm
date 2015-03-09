@@ -44,7 +44,7 @@ sub _get_share_dir
    {
       $share_dir = $blib_share_dir->stringify();
    }
-   elsif ( -d dist_dir('Emitria') )
+   else
    {
       $share_dir = dist_dir('Emitria');
    }
