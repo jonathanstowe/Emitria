@@ -53,13 +53,13 @@ sub _get_config_file
 
     my $file;
 
-    my $test_config =  file(curdir, 't', 'etc', 'emitria.conf')->resolve();
+    my $test_config =  file(curdir, 't', 'etc', 'emitria.conf');
 
     if ( -f $test_config )
     {
         $file = $test_config->stringify();
     }
-    elsif ( -f $ENV{EMITRIA_CONFIG} )
+    elsif ( exists $ENV{EMITRIA_CONFIG} && -f $ENV{EMITRIA_CONFIG} )
     {
         $file = $ENV{EMITRIA_CONFIG};
     }
@@ -67,7 +67,7 @@ sub _get_config_file
     {
         my $share_file = file($self->share_dir(), 'etc', 'emitria.conf'); 
 
-        if ( -d $share_file )
+        if ( -f $share_file )
         {
             $file = $share_file->stringify();
         }
