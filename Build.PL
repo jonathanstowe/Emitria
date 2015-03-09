@@ -16,9 +16,11 @@ my $builder = Module::Build->new(
       'Module::Build' => 0,
    },
    build_requires => {
-      'Test::Most'      => '0.31',
-      'Test::Exception' => 0,
-      'DBD::SQLite'     => 0,
+      'Test::Most'            => '0.31',
+      'Test::Exception'       => 0,
+      'Test::Pod::Coverage'   => '1.10',
+      'Devel::Cover'          => '1.03',
+      'DBD::SQLite'           => 0,
    },
    requires => {
       perl                                            => 5.008,
