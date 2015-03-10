@@ -34,7 +34,7 @@ sub test_role_object
 {
    my ( $test ) = @_;
 
-   ok(my $obj = $test->role_test_object(), "get object");
+   ok(my $obj = $test->role_test_object(_application => 'Emitria::Web'), "get object");
    isa_ok($obj, 'Catalyst::Controller');
 }
 
