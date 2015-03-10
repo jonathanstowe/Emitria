@@ -22,6 +22,7 @@ my $builder = Module::Build->new(
       'Devel::Cover'          => '1.03',
       'DBD::SQLite'           => 0,
       'Test::LWP::UserAgent'  => '0.027',
+      'Test::Class::Moose'    => '0.58',
    },
    requires => {
       perl                                            => 5.008,
