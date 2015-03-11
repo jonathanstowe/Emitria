@@ -78,4 +78,4 @@
 \bschema.png$
 \bRD_TRACE$
 \btest.tt$
-\b\.travis.yml$
+^\.travis.yml$

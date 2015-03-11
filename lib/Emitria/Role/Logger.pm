@@ -86,7 +86,7 @@ sub _get_logger_config
     }
     elsif ( exists $ENV{EMITRIA_LOGGER_CONFIG} && -f $ENV{EMITRIA_LOGGER_CONFIG} )
     {
-        $file = $ENV{EMITRIA_LOGGER_CONFIG};
+        $file = $ENV{EMITRIA_LOGGER_CONFIG} . "";
     }
     else
     {

@@ -61,7 +61,7 @@ sub _get_config_file
     }
     elsif ( exists $ENV{EMITRIA_CONFIG} && -f $ENV{EMITRIA_CONFIG} )
     {
-        $file = $ENV{EMITRIA_CONFIG};
+        $file = $ENV{EMITRIA_CONFIG} . "";
     }
     else
     {
