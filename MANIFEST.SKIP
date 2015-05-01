@@ -79,3 +79,4 @@
 \bRD_TRACE$
 \btest.tt$
 ^\.travis.yml$
+bower_components
