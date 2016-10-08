@@ -398,14 +398,6 @@ sub _new_request
 
 =back
 
-=head1 INHERITS FROM
-
-=over 4
-
-=item L<Emitria::Client|Emitria::Client>
-
-=back
-
 =cut
 
 1;
