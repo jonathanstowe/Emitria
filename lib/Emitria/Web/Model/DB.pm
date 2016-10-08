@@ -1,7 +1,9 @@
 package Emitria::Web::Model::DB;
 
 use strict;
-use base 'Catalyst::Model::DBIC::Schema';
+
+use Moose;
+extends 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'Emitria::Schema',
