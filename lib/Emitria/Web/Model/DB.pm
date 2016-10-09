@@ -7,8 +7,6 @@ extends 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'Emitria::Schema',
-    
-    
 );
 
 =head1 NAME
