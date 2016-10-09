@@ -32,8 +32,7 @@ sub index :Path :Args(0)
 {
     my ( $self, $c ) = @_;
 
-    $c->stash->{current_view} = 'HTML';
-    $c->stash(template => 'root.tt');    
+    $c->stash(template => 'root.tt', current_view => 'HTML');
 }
 
 

@@ -31,7 +31,7 @@ sub index : Path : Args(0)
 {
    my ( $self, $c ) = @_;
 
-   $c->stash->{current_view} = 'HTML';
+   $c->stash(current_view => 'HTML');
    $c->logout();
 
    $c->response->redirect( $c->uri_for('/login') );

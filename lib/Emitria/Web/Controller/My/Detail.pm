@@ -31,8 +31,7 @@ sub index_get : Path : Args(0) : GET
 {
    my ( $self, $c ) = @_;
 
-   $c->stash->{current_view} = 'Form';
-   $c->stash( template => 'form/userdetail.tt' );
+   $c->stash(current_view => 'Form',  template => 'form/userdetail.tt' );
 }
 
 =head2 index_post
