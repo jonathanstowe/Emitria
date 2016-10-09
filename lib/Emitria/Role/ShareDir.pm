@@ -46,7 +46,7 @@ sub _get_share_dir
    }
    else
    {
-      $share_dir = dist_dir('Emitria');
+        $share_dir = dist_dir('Emitria');
    }
 
    return $share_dir;
