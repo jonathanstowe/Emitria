@@ -34,5 +34,3 @@ Why Emitria?
 
 Well to be honest I couldn't think of a non-stupid name.  So I asked on Facebook.  The lovely Aaron Udy, a DJ, electronic music producer and radio host suggested it :)
 
-
-		
